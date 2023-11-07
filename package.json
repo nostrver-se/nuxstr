@@ -1,7 +1,7 @@
 {
   "name": "vue-nuxt-nostr-ndk",
   "private": true,
-  "license": "MIT",
+  "license": "GPL-2.0-only",
   "homepage": "https://vue-nuxt-nostr-ndk.nostrver.se",
   "type": "module",
   "scripts": {
