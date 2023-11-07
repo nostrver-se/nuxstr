@@ -4,5 +4,12 @@
 + https://nuxt.com/
 + https://github.com/nostr-dev-kit/ndk
 
+## Roadmap
+- [ ] Integrate NDK object as a Pinia store 
+- [ ] Login with extension (NIP-07)
+- [ ] Relay settings and preferences
+- [ ] Global feed example
+- [ ] Zap example
+
 ### License
 `GPL-2.0` GNU General Public License v2.0
