@@ -8,12 +8,12 @@
 + Nostr Dev Kit: https://github.com/nostr-dev-kit/ndk
 
 Learn more about Nuxt: https://nuxt.com  
-Explore Nuxt modules: https://nuxt.com/modules
-Learn more about Nostr: https://nostr.how   
-Explore Nostr clients:  
+Explore Nuxt modules: https://nuxt.com/modules  
+Learn more about Nostr: https://nostr.how  
+Explore Nostr clients: https://nostrapp.link/apps/category/all  
 
 ## Roadmap
-- [ ] Integrate NDK object as a Pinia store 
+- [ ] Integrate NDK object as a global with [Pinia](https://nuxt.com/modules/pinia)
 - [ ] Global feed example
 - [ ] Integrate [vite-pwa-nuxt](https://nuxt.com/modules/vite-pwa-nuxt)
 - [ ] Integrate [TailwindCSS](https://nuxt.com/modules/tailwindcss)
