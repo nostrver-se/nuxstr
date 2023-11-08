@@ -1,13 +1,12 @@
 <script setup>
+import Feed from "../components/Feed.vue";
 
 </script>
-
 <template>
   <div>
-    <h1>Start</h1>
+    <Feed></Feed>
   </div>
 </template>
-
 <style scoped>
 
 </style>

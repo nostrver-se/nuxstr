@@ -9,11 +9,12 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare && patch-package"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "nuxt": "^3.8.1",
+    "patch-package": "^8.0.0",
     "vue": "^3.3.8",
     "vue-router": "^4.2.5"
   },

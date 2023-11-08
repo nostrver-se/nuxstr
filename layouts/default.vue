@@ -1,5 +1,12 @@
+<script setup>
+
+</script>
+
 <template>
   <div>
-    <slot/>
+    <Navigation />
+    <main>
+      <slot />
+    </main>
   </div>
 </template>

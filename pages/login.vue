@@ -1,10 +1,9 @@
 <script setup>
 
 </script>
-
 <template>
   <div>
-    <h1>Start</h1>
+    <h1>Login</h1>
   </div>
 </template>
 

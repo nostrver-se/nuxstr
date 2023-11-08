@@ -1,8 +1,8 @@
 <script setup>
 import { ref } from "vue";
-// Import the package
 import NDK from "@nostr-dev-kit/ndk";
-// Create a new NDK instance with explicit relays
+
+// Init NDK instance
 const ndk = new NDK({
   explicitRelayUrls: ["wss://nostr.sebastix.dev", "wss://relay.damus.io"],
   outboxRelayUrls: ["wss://purplepag.es"],
@@ -11,7 +11,7 @@ const ndk = new NDK({
 const events = ref([])
 await ndk.connect().then(async() => {
   // Read all events with kind 1.
-  ndk.fetchEvents({kinds: [1]}).then(result => {
+  ndk.fetchEvents({kinds: [1], limit: 50}).then(result => {
     events.value = result
   })
 })
@@ -19,9 +19,10 @@ await ndk.connect().then(async() => {
 
 <template>
   <div>
+    <h1>Feed with last 50 events</h1>
     <ul>
       <li v-for="(event) in events">
-        {{ event.id }} - {{ event.created_at }} - {{ event.content }}
+        <NuxtLink :to="`/event/${event.id}`">{{ event.id }}</NuxtLink> - {{ event.created_at }} - kind: {{ event.kind }} - {{ event.content }}
       </li>
     </ul>
   </div>

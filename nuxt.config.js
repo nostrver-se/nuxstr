@@ -1,3 +1,5 @@
 export default defineNuxtConfig({
-  // My Nuxt config
+  app: {
+    pageTransition: { name: 'page', mode: 'out-in' }
+  }
 })
