@@ -13,8 +13,6 @@
         <slot />
       </section>
     </main>
-    <footer>
-
-    </footer>
+    <Footer />
   </div>
 </template>

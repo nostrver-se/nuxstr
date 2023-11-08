@@ -22,7 +22,7 @@ await ndk.connect().then(async() => {
     <h1>Feed with last 50 events</h1>
     <ul>
       <li v-for="(event) in events">
-        <NuxtLink :to="`/event/${event.id}`">{{ event.id }}</NuxtLink> - {{ event.created_at }} - kind: {{ event.kind }} - {{ event.content }}
+        <NuxtLink :to="`/event/${event.id}`">{{ event.id }}</NuxtLink> - created at: {{ event.created_at }} - kind: {{ event.kind }} - content: {{ event.content }} - pubkey: {{ event.pubkey }}
       </li>
     </ul>
   </div>

@@ -1,8 +1,8 @@
 {
-  "name": "vue-nuxt-nostr-ndk",
+  "name": "nuxstr",
   "private": true,
   "license": "GPL-2.0-only",
-  "homepage": "https://vue-nuxt-nostr-ndk.nostrver.se",
+  "homepage": "https://nuxstr.nostrver.se",
   "type": "module",
   "scripts": {
     "build": "nuxt build",
@@ -12,13 +12,16 @@
     "postinstall": "nuxt prepare && patch-package"
   },
   "devDependencies": {
-    "@nuxt/devtools": "latest",
+    "@nuxtjs/tailwindcss": "^6.9.4",
+    "@vite-pwa/nuxt": "^0.1.1",
     "nuxt": "^3.8.1",
     "patch-package": "^8.0.0",
     "vue": "^3.3.8",
     "vue-router": "^4.2.5"
   },
   "dependencies": {
-    "@nostr-dev-kit/ndk": "^2.0.5"
+    "@nostr-dev-kit/ndk": "^2.0.5",
+    "@pinia/nuxt": "^0.5.1",
+    "pinia": "^2.1.7"
   }
 }

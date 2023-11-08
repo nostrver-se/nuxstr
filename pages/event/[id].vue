@@ -1,22 +1,25 @@
 <script setup>
-import NDK from "@nostr-dev-kit/ndk";
+import { useNdkStore } from '~/stores/Ndk'
+
+const NdkStore = useNdkStore()
 
 const route = useRoute()
 let event_id = route.params.id
 
-// Init NDK instance
-const ndk = new NDK({
-  explicitRelayUrls: ["wss://nostr.sebastix.dev", "wss://relay.damus.io"],
-  outboxRelayUrls: ["wss://purplepag.es"],
-  enableOutboxModel: true,
-});
-const event = ref([])
-await ndk.connect().then(async() => {
-  // Fetch event
-  ndk.fetchEvent(event_id).then(result => {
-    event.value = result.rawEvent()
+const event = ref()
+await NdkStore.initNdk().then(async() => {
+  NdkStore.ndk.connect().then(() => {
+    fetchEvent()
+  }).finally(() => {
+    console.log('event fetch within the init ready function')
   })
 })
+
+async function fetchEvent(){
+  NdkStore.ndk.fetchEvent(event_id).then(result => {
+    event.value = result.rawEvent()
+  })
+}
 
 </script>
 
