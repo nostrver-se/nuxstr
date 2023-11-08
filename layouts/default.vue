@@ -4,9 +4,17 @@
 
 <template>
   <div>
+    <header>
+
+    </header>
     <Navigation />
     <main>
-      <slot />
+      <section>
+        <slot />
+      </section>
     </main>
+    <footer>
+
+    </footer>
   </div>
 </template>
