@@ -5,7 +5,7 @@ const NdkStore = useNdkStore()
 
 const route = useRoute()
 let event_id = route.params.id
-
+const event_raw = ref()
 const event = ref()
 await NdkStore.initNdk().then(async() => {
   NdkStore.ndk.connect().then(() => {
@@ -15,9 +15,10 @@ await NdkStore.initNdk().then(async() => {
   })
 })
 
-async function fetchEvent(){
+function fetchEvent(){
   NdkStore.ndk.fetchEvent(event_id).then(result => {
-    event.value = result.rawEvent()
+    event_raw.value = result.rawEvent()
+    console.log(event)
   })
 }
 
@@ -25,11 +26,20 @@ async function fetchEvent(){
 
 <template>
   <div>
-    Event: {{ route.params.id }}
+    @todo - render content of this event with different kind components
     <hr />
-    <code>
-      {{ event }}
-    </code>
+    Event id: <code>{{ event_id }}</code>
+    <br />
+    Kind:
+    <br />
+    Content:
+    <hr />
+    Raw event value:
+    <pre class="bg-gray-800 text-white text-xs overflow-x-scroll">
+      <code class="">
+        {{ event_raw }}
+      </code>
+    </pre>
   </div>
 </template>
 

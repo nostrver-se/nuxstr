@@ -1,9 +1,10 @@
 <script setup>
 
 </script>
+
 <template>
   <div>
-    @todo - login with extension
+    @todo - example for zapping my profile
   </div>
 </template>
 

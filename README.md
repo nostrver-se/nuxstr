@@ -18,17 +18,22 @@ Learn more about Nuxt: https://nuxt.com
 Explore Nuxt modules: https://nuxt.com/modules  
 Learn more about Nostr: https://nostr.how  
 Explore Nostr clients: https://nostrapp.link/apps/category/all  
+Get familiar with desingning for Nostr: https://nostrdesign.org
 
 ## Roadmap
-- [ ] Integrate NDK object as a global with [Pinia](https://nuxt.com/modules/pinia)
+- [x] State management: add NDK store with [Pinia](https://nuxt.com/modules/pinia)
 - [ ] Global feed example
 - [x] Integrate [vite-pwa-nuxt](https://nuxt.com/modules/vite-pwa-nuxt)
 - [x] Integrate [TailwindCSS](https://nuxt.com/modules/tailwindcss)
+- [ ] Add a basic responsive design with a header, navigation, main and footer element
+- [ ] State management: add a user store with Pinia
 - [ ] Login with extension (NIP-07)
+- [ ] Login with nsecBunker
 - [ ] Relay settings and preferences
 - [ ] Your profile page
 - [ ] Download all your events
 - [ ] Zap example
+- [ ] Implement a form of state management which can be shared through Nostr events (kind )
 
 ## How to contribute
 

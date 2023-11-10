@@ -14,12 +14,14 @@ export const useNdkStore = defineStore({
   },
   actions: {
     async initNdk() {
-      this.ndk = new NDK({
-        explicitRelayUrls: this.explicitRelayUrls,
-        outboxRelayUrls: this.outboxRelayUrls,
-        enableOutboxModel: this.enableOutboxModel
-      })
-      this.initialized = true
+      if (this.initialized === false) {
+        this.ndk = new NDK({
+          explicitRelayUrls: this.explicitRelayUrls,
+          outboxRelayUrls: this.outboxRelayUrls,
+          enableOutboxModel: this.enableOutboxModel
+        })
+        this.initialized = true
+      }
     },
     // @ todo
     // - add explicit relay

@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    @apply overflow-y-scroll bg-purple-50;
+}
+
 a {
     @apply text-purple-500;
+    &:hover {
+        @apply text-purple-800;
+    }
 }
