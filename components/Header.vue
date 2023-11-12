@@ -1,7 +1,7 @@
 <template>
   <header class="flex">
     <div class="flex-none py-4">
-      <NuxtLink to="/" class="font-bold underline">Nuxstr</NuxtLink>
+      <NuxtLink to="/" class="font-bold underline">Nuxt + Nostr = Nuxstr</NuxtLink>
     </div>
     <div class="grow py-4">
 
