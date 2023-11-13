@@ -18,7 +18,7 @@ Learn more about Nuxt: https://nuxt.com
 Explore Nuxt modules: https://nuxt.com/modules  
 Learn more about Nostr: https://nostr.how  
 Explore Nostr clients: https://nostrapp.link/apps/category/all  
-Get familiar with desingning for Nostr: https://nostrdesign.org
+Get familiar with designing for Nostr: https://nostrdesign.org
 
 ## Roadmap
 - [x] State management: add NDK store with [Pinia](https://nuxt.com/modules/pinia)
@@ -33,7 +33,7 @@ Get familiar with desingning for Nostr: https://nostrdesign.org
 - [ ] Your profile page
 - [ ] Download all your events
 - [ ] Zap example
-- [ ] Implement a form of state management which can be shared through Nostr events (kind )
+- [ ] Implement a form of state management which can be shared through Nostr events (kind 30078)
 
 ## How to contribute
 

@@ -14,7 +14,7 @@ export const useNdkStore = defineStore({
   },
   actions: {
     async initNdk() {
-      if (this.initialized === false) {
+      if (this.initialized === null) {
         this.ndk = new NDK({
           explicitRelayUrls: this.explicitRelayUrls,
           outboxRelayUrls: this.outboxRelayUrls,
