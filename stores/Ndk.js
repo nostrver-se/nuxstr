@@ -6,7 +6,7 @@ export const useNdkStore = defineStore({
   state: () => {
     return {
       initialized: false,
-      explicitRelayUrls: ["wss://nostr.sebastix.dev", "wss://relay.damus.io"],
+      explicitRelayUrls: ["wss://nostr.sebastix.dev"],
       outboxRelayUrls: ["wss://purplepag.es"],
       enableOutboxModel: true,
       ndk: null
