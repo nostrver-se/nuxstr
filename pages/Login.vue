@@ -3,7 +3,7 @@
 </script>
 <template>
   <div>
-    @todo - login with extension
+    @todo - login with extension or nsecBunker
   </div>
 </template>
 
