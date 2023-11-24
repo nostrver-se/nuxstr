@@ -1,7 +1,11 @@
 export default defineNuxtConfig({
   ssr: false,
   app: {
-    pageTransition: { name: 'layout', mode: 'out-in' }
+    pageTransition: { name: 'layout', mode: 'out-in' },
+    head: {
+      title: 'Nuxstr',
+      viewport: 'initial-scale=1, viewport-fit=cover, width=device-width'
+    }
   },
   css: ['~/assets/tailwind.css'],
   modules: [
@@ -11,5 +15,14 @@ export default defineNuxtConfig({
   ],
   pwa: {
     /* PWA options */
+    registerType: 'autoUpdate',
+    manifest: {
+      name: 'Nuxstr',
+      short_name: 'Nuxstr',
+      theme_color: '#ffffff'
+    },
+    client: {
+      installPrompt: true
+    }
   }
 })

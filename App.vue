@@ -1,7 +1,13 @@
 <script setup>
-
+  useHead({
+    meta: [
+      { name: 'apple-mobile-web-app-capable', content: 'yes' },
+      { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' }
+    ]
+  })
 </script>
 <template>
+  <VitePwaManifest />
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>

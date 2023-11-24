@@ -7,8 +7,15 @@ const NdkStore = useNdkStore()
 const route = useRoute()
 const event_raw = ref()
 let event = ref()
+
+/**
+ * Used for loading a dynamic component for rendering different kinds.
+ * https://vuejs.org/guide/essentials/component-basics.html#dynamic-components
+ *
+ * @type {{Kind1: DefineComponent<{}, {}, any>}}
+ */
 const Kinds = {
-  Kind1
+  Kind1 // Note
 }
 
 NdkStore.initNdk().then(async() => {
