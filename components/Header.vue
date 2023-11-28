@@ -1,5 +1,5 @@
 <template>
-  <header class="fixed sm:static w-full sm:w-auto flex h-[56px] bg-purple-950/80 backdrop-blur-sm px-2">
+  <header class="fixed top-0 sm:static w-full sm:w-auto flex bg-purple-950/80 backdrop-blur-sm px-2">
     <div class="flex-none py-4">
       <NuxtLink to="/" class="font-bold text-purple-300">Nuxt + Nostr = Nuxstr</NuxtLink>
     </div>
@@ -21,5 +21,7 @@
 </script>
 
 <style scoped>
-
+  header {
+    padding-top: env(safe-area-inset-top,0);
+  }
 </style>
