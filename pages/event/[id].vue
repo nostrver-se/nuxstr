@@ -1,6 +1,6 @@
 <script setup>
 import { useNdkStore } from '~/stores/Ndk'
-import Kind1 from "~/components/kinds/Kind1.vue";
+import Kind1 from "~/components/kinds/Kind1.vue"
 
 const NdkStore = useNdkStore()
 
@@ -20,6 +20,9 @@ const Kinds = {
 
 NdkStore.initNdk().then(async() => {
   await NdkStore.ndk.connect()
+  // @todo
+  // Get the current layout transition status
+  // When the transition is ready, render the event
   await fetchEvent(route.params.id)
 })
 

@@ -1,7 +1,10 @@
 export default defineNuxtConfig({
   ssr: false,
   app: {
-    pageTransition: { name: 'layout', mode: 'out-in' },
+    pageTransition: {
+      name: 'layout',
+      mode: 'out-in'
+    },
     head: {
       title: 'Nuxstr',
       viewport: 'initial-scale=1, viewport-fit=cover, width=device-width'

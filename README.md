@@ -28,6 +28,7 @@ Get familiar with designing for Nostr: https://nostrdesign.org
 - [ ] Personal feed example with content from your following
 - [x] Integrate [vite-pwa-nuxt](https://nuxt.com/modules/vite-pwa-nuxt)
 - [x] Integrate [TailwindCSS](https://nuxt.com/modules/tailwindcss)
+- [x] Add layout / page [transitions](https://nuxt.com/docs/getting-started/transitions#layout-transitions) 
 - [ ] Add a basic responsive design with a header, navigation, main and footer element
 - [ ] State management: add a user store with Pinia
 - [ ] Login with extension [NIP-07](https://nostr-nips.com/nip-07)
@@ -40,6 +41,11 @@ Get familiar with designing for Nostr: https://nostrdesign.org
 - [ ] Render identifiers in content fields [NIP-19](https://nostr-nips.com/nip-19) 
 - [ ] Zap example
 - [ ] Implement a form of state management which can be shared through Nostr events (kind 30078)
+- [ ] Implement push notifications with the Push API
+
+## PWA config
+* https://dev.to/karmasakshi/make-your-pwas-look-handsome-on-ios-1o08
+* 
 
 ## Deployment
 
