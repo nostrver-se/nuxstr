@@ -7,6 +7,7 @@ What's included in this repo?
 + PWA module: https://nuxt.com/modules/vite-pwa-nuxt
 + TailwindCSS: https://nuxt.com/modules/tailwindcss
 + Nostr Dev Kit (NDK): https://github.com/nostr-dev-kit/ndk
++ SVG icons used from [hericons](https://heroicons.com/)
 
 ## Demo
 

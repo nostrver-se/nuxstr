@@ -9,7 +9,8 @@ export const useNdkStore = defineStore({
       explicitRelayUrls: ["wss://nostr.sebastix.dev"],
       outboxRelayUrls: ["wss://purplepag.es"],
       enableOutboxModel: true,
-      ndk: null
+      ndk: null,
+      signer: null
     }
   },
   actions: {
@@ -23,6 +24,17 @@ export const useNdkStore = defineStore({
         this.initialized = true
       }
     },
+    async initNdkWithSigner(signer) {
+      if (this.ndk !== null && !this.ndk.signer) {
+        this.ndk = new NDK({
+          signer: signer,
+          explicitRelayUrls: this.explicitRelayUrls,
+          outboxRelayUrls: this.outboxRelayUrls,
+          enableOutboxModel: this.enableOutboxModel
+        })
+        this.initialized = true
+      }
+    }
     // @ todo
     // - add explicit relay
     // - remove explicit relay

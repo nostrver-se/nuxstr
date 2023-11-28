@@ -18,6 +18,6 @@ body {
 a {
     @apply text-purple-500;
     &:hover {
-        @apply text-purple-800;
+        @apply text-purple-600;
     }
 }

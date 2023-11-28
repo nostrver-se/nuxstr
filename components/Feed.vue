@@ -44,7 +44,11 @@ async function fetchFeed() {
 
 <template>
   <div>
-    <h1>Feed with last 50 events from {{ NdkStore.ndk.explicitRelayUrls }}</h1>
+    <h1 class="px-2">
+      Feed with last 50 events from
+      <br />
+      <code>{{ NdkStore.ndk.explicitRelayUrls }}</code>
+    </h1>
     <ul v-if="events">
       <li v-for="(event) in events" class="break-all p-2 mb-2 bg-purple-100">
         <NuxtLink :to="`/event/${event.id}`">{{ event.id }}</NuxtLink>
