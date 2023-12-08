@@ -24,7 +24,6 @@ export const useNdkStore = defineStore({
         if (this.signer !== null) {
           options.signer = this.signer
         }
-        console.log(options)
         this.ndk = new NDK(options)
         this.initialized = true
       }
