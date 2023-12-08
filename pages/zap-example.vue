@@ -13,13 +13,7 @@
     const sebastixUser = NdkStore.ndk.getUser({
       npub: 'npub1qe3e5wrvnsgpggtkytxteaqfprz0rgxr8c3l34kk3a9t7e2l3acslezefe'
     })
-    // Fetch the newest event kind 0 from user with an event, so we can zap this.
-    const filter = {
-      kinds: [0],
-      //authors: [sebastixUser.hexpubkey]
-    }
-    const eventProfile = await NdkStore.ndk.fetchEvent(filter)
-    const zapResponse = await eventProfile.zap(2121, 'A zap from Nuxstr!')
+    const zapResponse = await sebastixUser.zap(2121, 'A zap from Nuxstr!')
     console.log(zapResponse)
   }
 
@@ -27,7 +21,7 @@
 
 <template>
   <div>
-    <button @click="zapSebastix">Zap @sebastix</button>
+    <button @click="zapSebastix">Zap 2121 sats to @sebastix</button>
   </div>
 </template>
 
