@@ -13,7 +13,7 @@
     const sebastixUser = NdkStore.ndk.getUser({
       npub: 'npub1qe3e5wrvnsgpggtkytxteaqfprz0rgxr8c3l34kk3a9t7e2l3acslezefe'
     })
-    const zapResponse = await sebastixUser.zap(2121, 'A zap from Nuxstr!')
+    const zapResponse = await sebastixUser.zap(21, 'A zap from Nuxstr!')
     console.log(zapResponse)
   }
 
@@ -21,7 +21,7 @@
 
 <template>
   <div>
-    <button @click="zapSebastix">Zap 2121 sats to @sebastix</button>
+    <button @click="zapSebastix">Zap 21 sats to @sebastix</button>
   </div>
 </template>
 
