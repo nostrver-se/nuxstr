@@ -16,25 +16,22 @@ export const useNdkStore = defineStore({
   actions: {
     async initNdk() {
       if (this.ndk === null) {
-        this.ndk = new NDK({
+        let options = {
           explicitRelayUrls: this.explicitRelayUrls,
           outboxRelayUrls: this.outboxRelayUrls,
           enableOutboxModel: this.enableOutboxModel
-        })
+        }
+        if (this.signer !== null) {
+          options.signer = this.signer
+        }
+        console.log(options)
+        this.ndk = new NDK(options)
         this.initialized = true
       }
     },
-    async initNdkWithSigner(signer) {
-      if (this.ndk !== null && !this.ndk.signer) {
-        this.ndk = new NDK({
-          signer: signer,
-          explicitRelayUrls: this.explicitRelayUrls,
-          outboxRelayUrls: this.outboxRelayUrls,
-          enableOutboxModel: this.enableOutboxModel
-        })
-        this.initialized = true
-      }
-    }
+    setSigner(signer) {
+      this.signer = signer
+    },
     // @ todo
     // - add explicit relay
     // - remove explicit relay

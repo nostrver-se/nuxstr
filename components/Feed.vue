@@ -36,9 +36,7 @@ NdkStore.initNdk().then(async() => {
 
 async function fetchFeed() {
   // Fetch all events with different kind.
-  NdkStore.ndk.fetchEvents({kinds: fetchKinds, limit: 50}).then(result => {
-    events.value = result
-  })
+  events.value = await NdkStore.ndk.fetchEvents({kinds: fetchKinds, limit: 50})
 }
 </script>
 

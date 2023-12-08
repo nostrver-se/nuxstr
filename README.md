@@ -30,12 +30,13 @@ Get familiar with designing for Nostr: https://nostrdesign.org
 - [x] Integrate [vite-pwa-nuxt](https://nuxt.com/modules/vite-pwa-nuxt)
 - [x] Integrate [TailwindCSS](https://nuxt.com/modules/tailwindcss)
 - [x] Add layout / page [transitions](https://nuxt.com/docs/getting-started/transitions#layout-transitions) 
-- [ ] Add a basic responsive design with a header, navigation, main and footer element
+- [x] Add a basic responsive design with a header, navigation, main and footer element
 - [ ] State management: add a user store with Pinia
-- [ ] Login with extension [NIP-07](https://nostr-nips.com/nip-07)
-- [ ] Login with nsecBunker
+- [x] Login with extension [NIP-07](https://nostr-nips.com/nip-07)
+- [ ] Login with Wallet Connect [NIP-46](https://nostr-nips.com/nip-46)
 - [ ] Relay settings and preferences
 - [ ] A basic profile page
+- [ ] Logout / disconnect
 - [ ] Download / backup all your events
 - [ ] Kind 1 component short text note
 - [ ] Kind 30023 component for long-form content

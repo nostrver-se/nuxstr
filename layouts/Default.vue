@@ -6,17 +6,17 @@ const { $pwa } = useNuxtApp()
   <div class="container">
     <div v-show="$pwa.needRefresh">
       <span>
-        New content available, click on reload button to update.
+        The app has been updated, click on reload button to refresh.
       </span>
       <button @click="$pwa.updateServiceWorker()">Reload</button>
     </div>
     <Header />
-    <main class="sm:flex sm:flex-row sm:space-x-2">
-      <section class="w-11/12 sm:w-4/5 mt-[68px] sm:basis-4/5 sm:mt-0 pr-2">
+    <main class="flex flex-row">
+      <section class="flex-1 mt-[68px] sm:mt-0 pr-10 sm:pr-0">
         <SubNavigation />
         <slot />
       </section>
-      <Navigation class="w-1/12 sm:basis-1/5 mt-[56px] sm:mt-0" />
+      <Navigation class="flex-none w-10 sm:w-72 mt-[56px] sm:mt-0" />
     </main>
     <Footer />
   </div>
