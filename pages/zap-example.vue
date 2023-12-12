@@ -6,15 +6,21 @@
   const nip07signer = new NDKNip07Signer()
 
   const zapSebastix = async () => {
-    NdkStore.setSigner(nip07signer)
-    await NdkStore.initNdk()
-    await NdkStore.ndk.connect()
-    const user = await nip07signer.user()
-    const sebastixUser = NdkStore.ndk.getUser({
-      npub: 'npub1qe3e5wrvnsgpggtkytxteaqfprz0rgxr8c3l34kk3a9t7e2l3acslezefe'
-    })
-    const zapResponse = await sebastixUser.zap(21, 'A zap from Nuxstr!')
-    console.log(zapResponse)
+    try {
+      NdkStore.setSigner(nip07signer)
+      await NdkStore.initNdk()
+      await NdkStore.ndk.connect()
+      const user = await nip07signer.user()
+      const sebastixUser = NdkStore.ndk.getUser({
+        npub: 'npub1qe3e5wrvnsgpggtkytxteaqfprz0rgxr8c3l34kk3a9t7e2l3acslezefe'
+      })
+      const zapResponse = await sebastixUser.zap(21, 'A zap from Nuxstr!')
+      console.log(zapResponse)
+    } catch (e) {
+      console.log(e)
+      alert(e)
+    }
+
   }
 
 </script>

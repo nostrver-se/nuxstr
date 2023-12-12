@@ -1,43 +1,44 @@
 <script setup>
-import { ref } from "vue";
-import { useNdkStore } from '~/stores/Ndk'
+  import { ref } from "vue";
+  import { useNdkStore } from '~/stores/Ndk'
 
-const NdkStore = useNdkStore()
-const events = ref()
+  const NdkStore = useNdkStore()
+  const events = ref()
 
-const fetchKinds = [
-  0, // Profile metadata
-  1, // Notes
-  3, // Contacts
-  6, // Repost
-  7, // Reaction
-  1985, // Label
-  9735, // Zap receipt event
-  10002, // Relay list metadata
-  30023 // Long-form content
-]
+  const fetchKinds = [
+    0, // Profile metadata
+    1, // Notes
+    3, // Contacts
+    6, // Repost
+    7, // Reaction
+    1985, // Label
+    9735, // Zap receipt event
+    10002, // Relay list metadata
+    30023 // Long-form content
+  ]
 
-/**
- * @todo
- * Let's async load the feed component with:
- * https://nuxt.com/docs/api/composables/use-async-data
- */
-const { data, pending, error, refresh } = await useAsyncData(
-    'feed',
-    () => {
-      // Return a promise object here.
-    }
-)
+  /**
+   * @todo
+   * Let's async load the feed component with:
+   * https://nuxt.com/docs/api/composables/use-async-data
+   */
+  const { data, pending, error, refresh } = await useAsyncData(
+      'feed',
+      () => {
+        // Return a promise object here.
+      }
+  )
 
-NdkStore.initNdk().then(async() => {
-  await NdkStore.ndk.connect()
-  await fetchFeed()
-})
+  async function fetchFeed() {
+    // Fetch all events with different kind.
+    events.value = await NdkStore.ndk.fetchEvents({kinds: fetchKinds, limit: 50})
+  }
 
-async function fetchFeed() {
-  // Fetch all events with different kind.
-  events.value = await NdkStore.ndk.fetchEvents({kinds: fetchKinds, limit: 50})
-}
+  onMounted(async() => {
+    await NdkStore.initNdk()
+    await NdkStore.ndk.connect()
+    await fetchFeed()
+  })
 </script>
 
 <template>

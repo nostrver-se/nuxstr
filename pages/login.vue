@@ -6,40 +6,57 @@
   const NdkStore = useNdkStore()
   const nip07signer = new NDKNip07Signer()
   const UserStore = useUserStore()
+  const modalRef = ref(null)
 
-  // @todo
   const loginExtension = async () => {
-    NdkStore.setSigner(nip07signer)
-    await NdkStore.initNdk()
-    await NdkStore.ndk.connect()
-    const user = await nip07signer.user()
-    UserStore.login(user)
+    try {
+      NdkStore.setSigner(nip07signer)
+      await NdkStore.initNdk()
+      await NdkStore.ndk.connect()
+      const user = await nip07signer.user()
+      UserStore.login(user)
 
-    // Fetch profile of user with https://ndk.fyi/docs/classes/NDKUser.html#fetchProfile
-    const u = NdkStore.ndk.getUser({
-      npub: UserStore.npub
-    })
-    await u.fetchProfile()
-    UserStore.name = u.profile.name
-    console.log(u.profile)
-    // Other way:
-    const profile = await fetchProfileKind0(u)
-    console.log(profile)
+      // Fetch profile of user with https://ndk.fyi/docs/classes/NDKUser.html#fetchProfile
+      const u = NdkStore.ndk.getUser({
+        npub: UserStore.npub
+      })
+      await u.fetchProfile()
+      UserStore.name = u.profile.name
+      console.log(u.profile)
+      // Other way:
+      const profile = await fetchProfileKind0(u)
+      console.log(profile)
+    } catch (e) {
+      console.log(e)
+      alert(e);
+    }
   }
 
   const loginNostrConnect = () => {
     // @todo
-
+    // open Modal
+    try {
+      console.log('open the modal')
+      modalRef.value.show()
+    } catch (e) {
+      console.log(e)
+      alert(e)
+    }
   }
 
   const fetchProfileKind0 = async (user) => {
     // @todo
     // Fetch the newest event kind 0 from user with an event.
-    const filter = {
-      kinds: [0],
-      authors: [user.hexpubkey]
+    try {
+      const filter = {
+        kinds: [0],
+        authors: [user.hexpubkey]
+      }
+      return await NdkStore.ndk.fetchEvent(filter)
+    } catch (e) {
+      console.log(e)
+      alert(e)
     }
-    return await NdkStore.ndk.fetchEvent(filter)
   }
 
 </script>
@@ -49,7 +66,7 @@
       <p class="text-center">
         Welcome <strong>{{ UserStore.name }}</strong>
         <br />
-        <code>{{ UserStore.npub }}</code>
+        <code >{{ UserStore.npub }}</code>
       </p>
       <button @click="UserStore.logout(NdkStore.ndk)">
         Logout
@@ -59,11 +76,16 @@
       <button @click="loginExtension">
         Login with extension (NIP-07)
       </button>
-      <button @click="loginNostrConnect" disabled>
+      <button @click="loginNostrConnect">
         Login with Nostr Connect (NIP-46)
       </button>
     </div>
-    <Modal></Modal>
+    <Modal :open="false" ref="modalRef">
+      <label>
+        Enter your bunker URL:
+        <input type="text" name="bunker" class="bg-purple-100 w-full p-2" />
+      </label>
+    </Modal>
   </div>
 </template>
 

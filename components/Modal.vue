@@ -2,8 +2,9 @@
   const dialog = ref(document.getElementById('dialog'))
   const open = ref(true)
   const props = defineProps({
-    // @todo
+    open: Boolean
   })
+  const slots = useSlots()
   const emit = defineEmits(['show', 'close']);
 
   const show = () => {
@@ -16,29 +17,42 @@
     open.value = false
   }
 
+  const submit = () => {
+    // @todo
+    console.log('submit')
+  }
+
+  defineExpose({
+    show,
+    close
+  })
+
 </script>
 <template>
   <dialog ref="dialog">
     <div class="mx-auto bg-white p-6 shadow-xl">
-      <div class="content">
-        Dynamic modal content {{ open }}
-      </div>
-      <form method="dialog" class="actions text-right">
+      <form method="dialog" class="actions text-right space-x-2">
+        <div class="content mb-2 text-left">
+          <slot>
+            Dynamic modal content
+          </slot>
+        </div>
         <button @click="close">Close</button>
+        <button type="submit" @click="submit">Submit</button>
       </form>
     </div>
   </dialog>
 </template>
 <style scoped>
   dialog {
-    @apply fixed top-0 bottom-0 left-0 right-0 w-screen h-screen bg-neutral-950 bg-opacity-50 backdrop-blur-sm z-50;
-
     &[open] {
       @apply grid content-center;
     }
-
     button {
-      @apply bg-purple-100 p-2;
+      @apply bg-purple-100 text-purple-500 p-2;
+    }
+    &::backdrop {
+      @apply bg-neutral-950 bg-opacity-50 backdrop-blur-sm;
     }
   }
 </style>
