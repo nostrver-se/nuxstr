@@ -31,7 +31,8 @@
 
   async function fetchFeed() {
     // Fetch all events with different kind.
-    events.value = await NdkStore.ndk.fetchEvents({kinds: fetchKinds, limit: 50})
+    const filter = {kinds: fetchKinds, limit: 50}
+    events.value = await NdkStore.ndk.fetchEvents(filter)
   }
 
   onMounted(async() => {
@@ -43,10 +44,10 @@
 
 <template>
   <div>
-    <h1 class="px-2">
+    <h1 class="px-2" v-if="NdkStore.initialized">
       Feed with last 50 events from
       <br />
-      <code>{{ NdkStore.ndk.explicitRelayUrls }}</code>
+      <code>{{ NdkStore.explicitRelayUrls }}</code>
     </h1>
     <ul v-if="events">
       <li v-for="(event) in events" class="break-all p-2 mb-2 bg-purple-100">

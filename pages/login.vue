@@ -10,8 +10,8 @@
 
   const loginExtension = async () => {
     try {
-      NdkStore.setSigner(nip07signer)
       await NdkStore.initNdk()
+      NdkStore.ndk.client = nip07signer
       await NdkStore.ndk.connect()
       const user = await nip07signer.user()
       UserStore.login(user)

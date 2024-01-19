@@ -7,10 +7,10 @@
 
   const zapSebastix = async () => {
     try {
-      NdkStore.setSigner(nip07signer)
       await NdkStore.initNdk()
+      NdkStore.ndk.signer = nip07signer
       await NdkStore.ndk.connect()
-      const user = await nip07signer.user()
+      await nip07signer.user()
       const sebastixUser = NdkStore.ndk.getUser({
         npub: 'npub1qe3e5wrvnsgpggtkytxteaqfprz0rgxr8c3l34kk3a9t7e2l3acslezefe'
       })
