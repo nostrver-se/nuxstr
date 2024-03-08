@@ -11,7 +11,7 @@ build:site:
   artifacts:
     expire_in: 6 hours
     paths:
-      - output/public
+      - .output/public
   only:
     refs:
       - master
@@ -34,7 +34,7 @@ deploy:prod:
     - apk add rsync
     - rsync --version
   script:
-    - rsync -avz --delete -e ssh output/public/. root@sebastix.dev:/var/www/nuxstr.nostrver.se
+    - rsync -avz --delete -e ssh -p 1986 .output/public/. sebastix@nostrver.se:/var/www/nuxstr.nostrver.se
     - echo "Deployment ready, check https://nuxstr.nostrver.se"
   dependencies:
     - build:site
