@@ -1,0 +1,44 @@
+stages:
+  - build
+  - deploy
+
+build:site:
+  image: node:16
+  stage: build
+  script:
+    - npm install
+    - npm run generate
+  artifacts:
+    expire_in: 6 hours
+    paths:
+      - output/public
+  only:
+    refs:
+      - master
+
+deploy:prod:
+  image: alpine
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master" || $CI_COMMIT_BRANCH == "main"'
+      when: always
+  stage: deploy
+  before_script:
+    - 'which ssh-agent || ( apk add --update openssh )'
+    - apk add --update bash
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | ssh-add -
+    # - echo "$SSH_PRIVATE_KEY_PROD" | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    # Install rsync
+    - apk add rsync
+    - rsync --version
+  script:
+    # Delete previous build files
+    - ssh -T root@sebastix.dev 'rm -rf /var/www/nuxstr.sebastix.dev/*'
+    - ssh -T root@sebastix.dev 'cd /var/www/nuxstr.sebastix.dev && ls -la'
+    - rsync -avz --delete -e ssh output/public/. root@sebastix.dev:/var/www/nuxstr.sebastix.dev
+    - echo "Deployment ready, check https://hondacivic.sebastix.com"
+  dependencies:
+    - build:site
