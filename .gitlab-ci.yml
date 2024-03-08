@@ -34,7 +34,7 @@ deploy:prod:
     - apk add rsync
     - rsync --version
   script:
-    - rsync -avz --delete -e ssh -p 1986 .output/public/. sebastix@nostrver.se:/var/www/nuxstr.nostrver.se
+    - rsync -avz --delete -e 'ssh -p 1986' .output/public/. sebastix@nostrver.se:/var/www/nuxstr.nostrver.se
     - echo "Deployment ready, check https://nuxstr.nostrver.se"
   dependencies:
     - build:site
