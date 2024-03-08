@@ -36,9 +36,9 @@ deploy:prod:
     - rsync --version
   script:
     # Delete previous build files
-    - ssh -T root@sebastix.dev 'rm -rf /var/www/nuxstr.sebastix.dev/*'
+    - ssh -T root@sebastix.dev 'rm -rf /var/www/nuxstr.nostrver.se/*'
     - ssh -T root@sebastix.dev 'cd /var/www/nuxstr.sebastix.dev && ls -la'
-    - rsync -avz --delete -e ssh output/public/. root@sebastix.dev:/var/www/nuxstr.sebastix.dev
-    - echo "Deployment ready, check https://hondacivic.sebastix.com"
+    - rsync -avz --delete -e ssh output/public/. root@sebastix.dev:/var/www/nuxstr.nostrver.se
+    - echo "Deployment ready, check https://nuxstr.nostrver.se"
   dependencies:
     - build:site
