@@ -35,9 +35,6 @@ deploy:prod:
     - apk add rsync
     - rsync --version
   script:
-    # Delete previous build files
-    - ssh -T root@sebastix.dev 'rm -rf /var/www/nuxstr.nostrver.se/*'
-    - ssh -T root@sebastix.dev 'cd /var/www/nuxstr.sebastix.dev && ls -la'
     - rsync -avz --delete -e ssh output/public/. root@sebastix.dev:/var/www/nuxstr.nostrver.se
     - echo "Deployment ready, check https://nuxstr.nostrver.se"
   dependencies:
