@@ -1,5 +1,5 @@
 <script setup>
-  import { ref } from "vue";
+  import { ref } from "vue"
   import { useNdkStore } from '~/stores/Ndk'
 
   const NdkStore = useNdkStore()
@@ -29,7 +29,7 @@
       }
   )
 
-  async function fetchFeed() {
+  const fetchFeed = async() => {
     // Fetch all events with different kind.
     const filter = {kinds: fetchKinds, limit: 50}
     events.value = await NdkStore.ndk.fetchEvents(filter)

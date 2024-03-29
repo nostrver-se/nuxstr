@@ -25,12 +25,24 @@ export const useNdkStore = defineStore({
       }
     },
     // @ todo
-    // - add explicit relay
-    // - remove explicit relay
+    // - add an explicit relay
+    // - remove an explicit relay
+    // - set explicit relays (override current list)
+    setExplicitRelays(relays = []) {
+      this.explicitRelayUrls = relays
+    },
     // - add outbox relay
     // - remove outbox relay
+    // - set outbox relays (override current list)
+    setOutBoxRelays(relays = []) {
+      this.outboxRelayUrls = relays
+    },
     // - connect
     // - disconnect
     // - reconnect (disconnect and connect)
+    // - set outboxModal with a boolean
+    setOutboxModel(bool) {
+      this.enableOutboxModel = bool
+    }
   }
 })

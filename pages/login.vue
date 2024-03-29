@@ -67,6 +67,9 @@
         Welcome <strong>{{ UserStore.name }}</strong>
         <br />
         <code >{{ UserStore.npub }}</code>
+        <br />
+        <br />
+        <NuxtLink to="/profile">View your profile here</NuxtLink>
       </p>
       <button @click="UserStore.logout(NdkStore.ndk)">
         Logout

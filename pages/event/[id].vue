@@ -1,6 +1,9 @@
 <script setup>
 import { useNdkStore } from '~/stores/Ndk'
+import Kind0 from "~/components/kinds/Kind0.vue"
 import Kind1 from "~/components/kinds/Kind1.vue"
+import Kind30023 from "~/components/kinds/Kind30023.vue"
+import Kind37515 from "~/components/kinds/Kind37515.vue"
 
 const NdkStore = useNdkStore()
 
@@ -15,7 +18,10 @@ let event = ref()
  * @type {{Kind1: DefineComponent<{}, {}, any>}}
  */
 const Kinds = {
-  Kind1 // Note
+  Kind0, // Metadata of a profile
+  Kind1, // Note
+  Kind30023, // Long-form content
+  Kind37515, // Place
 }
 
 NdkStore.initNdk().then(async() => {
