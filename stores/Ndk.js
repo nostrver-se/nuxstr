@@ -3,15 +3,13 @@ import NDK from "@nostr-dev-kit/ndk"
 
 export const useNdkStore = defineStore({
   id: 'ndk-store',
-  state: () => {
-    return {
-      initialized: false,
-      explicitRelayUrls: ["wss://nostr.sebastix.dev"],
-      outboxRelayUrls: ["wss://purplepag.es"],
-      enableOutboxModel: true,
-      ndk: null
-    }
-  },
+  state: () => ({
+    initialized: false,
+    explicitRelayUrls: ["wss://nostr.sebastix.dev"],
+    outboxRelayUrls: ["wss://purplepag.es"],
+    enableOutboxModel: true,
+    ndk: null
+  }),
   actions: {
     async initNdk() {
       if (this.ndk === null) {
@@ -31,6 +29,7 @@ export const useNdkStore = defineStore({
     setExplicitRelays(relays = []) {
       this.explicitRelayUrls = relays
     },
+    // - reset explicit relays (set to defaults)
     // - add outbox relay
     // - remove outbox relay
     // - set outbox relays (override current list)

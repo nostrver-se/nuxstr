@@ -2,15 +2,13 @@ import { defineStore } from 'pinia'
 
 export const useUserStore = defineStore({
   id: 'user-store',
-  state: () => {
-    return {
-      npub: '',
-      name: '',
-      customRelays: [],
-      signedIn: false,
-      loggedOut: true,
-    }
-  },
+  state: () => ({
+    npub: '',
+    name: '',
+    customRelays: [],
+    signedIn: false,
+    loggedOut: true,
+  }),
   actions: {
     setNpub(npub) {
       this.npub = npub

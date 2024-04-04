@@ -1,7 +1,7 @@
 <script setup>
-  import {useNdkStore} from '~/stores/Ndk'
-  import {NDKNip07Signer, NDKNip46Signer} from "@nostr-dev-kit/ndk";
-  import {useUserStore} from "../stores/User.js";
+  import { useNdkStore } from '~/stores/Ndk'
+  import { NDKNip07Signer, NDKNip46Signer } from "@nostr-dev-kit/ndk";
+  import { useUserStore } from "../stores/User.js";
 
   const NdkStore = useNdkStore()
   const nip07signer = new NDKNip07Signer()

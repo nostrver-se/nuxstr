@@ -1,6 +1,6 @@
 <script setup>
-  import {useNdkStore} from '~/stores/Ndk'
-  import {useUserStore} from "../stores/User.js";
+  import { useNdkStore } from '~/stores/Ndk'
+  import { useUserStore } from "../stores/User.js";
 
   const NdkStore = useNdkStore()
   const UserStore = useUserStore()
@@ -42,6 +42,14 @@
       </div>
       <dl class="divide-y divide-gray-100">
         <div class="mt-4 px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-medium leading-6 text-gray-900">defined by default from this client</dt>
+          <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+            nostr.sebastix.dev
+            relay.damus.io
+            nos.lol
+          </dd>
+        </div>
+        <div class="mt-4 px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
           <dt class="text-sm font-medium leading-6 text-gray-900">from .well-known/nostr.json (NIP-05)</dt>
           <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
             ...
@@ -54,7 +62,7 @@
           </dd>
         </div>
         <div class="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-          <dt class="text-sm font-medium leading-6 text-gray-900">from the outbox / gossip model</dt>
+          <dt class="text-sm font-medium leading-6 text-gray-900">from event kind 3 (NIP-02)</dt>
           <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
             ...
           </dd>

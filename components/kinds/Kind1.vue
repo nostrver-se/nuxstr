@@ -1,4 +1,10 @@
 <script setup>
+
+  /**
+   * Components properties.
+   *
+   * @type {Prettify<Readonly<ExtractPropTypes<{id: NumberConstructor, event: {}}>>>}
+   */
   let props = defineProps({
     id: Number,
     event: {}
