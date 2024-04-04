@@ -17,10 +17,6 @@
 
   const article = ref()
 
-  const RenderContent = async (markdownString) => {
-
-  }
-
   onMounted(async () => {
     article.value = new NDKArticle(NdkStore.ndk, props.event)
   })
