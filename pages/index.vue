@@ -8,7 +8,7 @@
     <div>
       <p>In this demo you can:</p>
       <ul>
-        <li><NuxtLink to="/login">Login</NuxtLink></li>
+        <li><NuxtLink to="/login">Connect your Nostr ID</NuxtLink></li>
         <li><NuxtLink to="/notes">View notes</NuxtLink></li>
         <li><NuxtLink to="/long-form-content">View content</NuxtLink></li>
         <li><NuxtLink to="/places">View places</NuxtLink></li>

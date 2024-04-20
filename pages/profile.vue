@@ -1,17 +1,13 @@
 <script setup>
   import { useNdkStore } from '~/stores/Ndk'
-  import { useUserStore } from "../stores/User.js";
+  import { useUserStore } from '~/stores/User'
 
   const NdkStore = useNdkStore()
   const UserStore = useUserStore()
 
   onMounted(async () => {
-    if (UserStore.signedIn) {
-      const u = NdkStore.ndk.getUser({
-        npub: UserStore.npub
-      })
-      await u.fetchProfile()
-      console.log(u.profile)
+    if (!UserStore.signedIn) {
+
     }
   })
 

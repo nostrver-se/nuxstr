@@ -1,4 +1,5 @@
-<script setup>import { useNdkStore } from '~/stores/Ndk'
+<script setup>
+  import { useNdkStore } from '~/stores/Ndk'
   import Kind0 from "~/components/kinds/Kind0.vue"
   import Kind1 from "~/components/kinds/Kind1.vue"
   import Kind30023 from "~/components/kinds/Kind30023.vue"

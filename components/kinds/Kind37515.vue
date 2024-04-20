@@ -17,11 +17,40 @@
 
   const place = ref()
 
+  const getContent = () => {
+
+  }
+
+  const getGeometry = () => {
+    // coordinates
+    // type
+  }
+
+  const getProperties = () => {
+
+  }
+
+  const getType = () => {
+
+  }
+
   const getName = () => {
 
   }
 
-  const getGeoLocation = () => {
+  const getDescription = () => {
+
+  }
+
+  const getAddress = () => {
+
+  }
+
+  const getWebsite = () => {
+
+  }
+
+  const getPhoneNumber = () => {
 
   }
 
@@ -40,7 +69,9 @@
       <h1>...</h1>
       Created at: {{ place.created_at }}
       <br />
-      {{ place.content }}
+      <a :href="`https://go.yondar.me/place/${ place.encode() }`" target="_blank">View place with Yondar</a>
+      <br />
+      Content: {{ place.content }}
     </div>
     <div v-else>
       Loading place...
