@@ -10,7 +10,8 @@
   })
 
   const doCheckin = () => {
-    console.log('@todo - create 13811 event here')
+    console.log('@todo - create and sign 13811 event here')
+    alert('@todo - create and sign 13811 event here')
   }
 </script>
 
