@@ -18,7 +18,7 @@
   <div>
     <h1>{{ place }}</h1>
     <button id="btnCheckin" @click="doCheckin" class="p-2 bg-purple-100 text-purple-500" v-if="UserStore.signedIn">Click here</button>
-    <NuxtLink to="/login">Connect first</NuxtLink>
+    <NuxtLink to="/login" v-else>Connect first</NuxtLink>
     to check-in at <NuxtLink :to="`/places/${place}`">{{ place }}</NuxtLink>
     <div>
       <h3>Current check-ins</h3>
