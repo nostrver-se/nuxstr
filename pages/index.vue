@@ -12,6 +12,7 @@
         <li><NuxtLink to="/notes">View notes</NuxtLink></li>
         <li><NuxtLink to="/long-form-content">View content</NuxtLink></li>
         <li><NuxtLink to="/places">View places</NuxtLink></li>
+        <li><NuxtLink to="/blossom">Blossom</NuxtLink></li>
         <li><NuxtLink to="/zap-example">Send a zap</NuxtLink></li>
       </ul>
     </div>

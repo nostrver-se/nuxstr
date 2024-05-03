@@ -27,7 +27,13 @@
           </dd>
         </div>
         <div class="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-          <dt class="text-sm font-medium leading-6 text-gray-900">Public key</dt>
+          <dt class="text-sm font-medium leading-6 text-gray-900">Pubkey</dt>
+          <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+            <code>{{ UserStore.pubkey }}</code>
+          </dd>
+        </div>
+        <div class="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-medium leading-6 text-gray-900">npub</dt>
           <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
             <code>{{ UserStore.npub }}</code>
           </dd>
@@ -38,11 +44,15 @@
       </div>
       <dl class="divide-y divide-gray-100">
         <div class="mt-4 px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-medium leading-6 text-gray-900">current connected relays</dt>
+          <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+            <span class="block" v-for="(relay) in NdkStore.explicitRelayUrls">{{ relay }}</span>
+          </dd>
+        </div>
+        <div class="mt-4 px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
           <dt class="text-sm font-medium leading-6 text-gray-900">defined by default from this client</dt>
           <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-            nostr.sebastix.dev
-            relay.damus.io
-            nos.lol
+            <span class="block" v-for="(relay) in NdkStore.getDefaultExplicitRelays">{{ relay }}</span>
           </dd>
         </div>
         <div class="mt-4 px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
@@ -63,6 +73,18 @@
             ...
           </dd>
         </div>
+        <div class="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-medium leading-6 text-gray-900">Outbox model modus</dt>
+          <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+            {{ NdkStore.enableOutboxModel }}
+          </dd>
+        </div>
+        <div class="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0" v-if="NdkStore.enableOutboxModel">
+          <dt class="text-sm font-medium leading-6 text-gray-900">Connected relays with outbox model</dt>
+          <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+            <span class="block" v-for="(relay) in NdkStore.getDefaultOutboxRelays">{{ relay }}</span>
+          </dd>
+        </div>
       </dl>
       <div class="mt-4">
         <button @click="UserStore.logout(NdkStore.ndk)" class="block text-purple-500 mt-6 p-2 mx-auto bg-purple-100 hover:bg-purple-200">
@@ -71,7 +93,9 @@
       </div>
     </div>
     <div v-else>
-      You need to login
+      <NuxtLink to="/login" class="block text-purple-500 mt-6 p-2 mx-auto bg-purple-100 hover:bg-purple-200">
+        You need to login first
+      </NuxtLink>
     </div>
   </div>
 </template>

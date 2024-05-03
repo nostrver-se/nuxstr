@@ -11,10 +11,10 @@
     try {
       if (!UserStore.signedIn) {
         await NdkStore.initNdk()
-        NdkStore.ndk.client = nip07signer
-        await NdkStore.ndk.connect()
-        const user = await nip07signer.user()
-        UserStore.login(user, NdkStore.ndk)
+        // NdkStore.ndk.signer = nip07signer
+        // await NdkStore.ndk.connect()
+        // const user = await nip07signer.user()
+        // UserStore.login(user, NdkStore.ndk)
       }
     } catch (e) {
       console.log(e)

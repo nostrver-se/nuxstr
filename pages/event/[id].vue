@@ -38,13 +38,15 @@
   }
 
   onMounted(async () => {
-    NdkStore.initNdk().then(async() => {
-      await NdkStore.ndk.connect()
-      // @todo
-      // Get the current layout transition status
-      // When the transition is ready, render the event
-      await fetchEvent(route.params.id)
-    })
+    NdkStore.setExplicitRelays([
+      'wss://relay.damus.io'
+    ])
+    await NdkStore.initNdk()
+    await NdkStore.ndk.connect()
+    // @todo
+    // Get the current layout transition status
+    // When the transition is ready, render the event
+    await fetchEvent(route.params.id)
   })
 </script>
 

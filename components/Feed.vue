@@ -36,6 +36,7 @@
   }
 
   onMounted(async() => {
+    NdkStore.setOutboxModel(true)
     await NdkStore.initNdk()
     await NdkStore.ndk.connect()
     await fetchFeed()

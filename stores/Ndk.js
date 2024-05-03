@@ -5,17 +5,23 @@ export const useNdkStore = defineStore({
   id: 'ndk-store',
   state: () => ({
     initialized: false,
-    explicitRelayUrls: ["wss://nostr.sebastix.dev"],
-    outboxRelayUrls: ["wss://purplepag.es"],
-    enableOutboxModel: true,
+    defaultExplicitRelayUrls: [
+      "wss://nostr.sebastix.dev"
+    ],
+    explicitRelayUrls: [],
+    defaultOutboxRelayUrls: [
+      "wss://purplepag.es"
+    ],
+    outboxRelayUrls: [],
+    enableOutboxModel: false,
     ndk: null
   }),
   actions: {
     async initNdk() {
       if (this.ndk === null) {
         let options = {
-          explicitRelayUrls: this.explicitRelayUrls,
-          outboxRelayUrls: this.outboxRelayUrls,
+          explicitRelayUrls: this.explicitRelayUrls.length ? this.explicitRelayUrls : this.defaultExplicitRelayUrls,
+          outboxRelayUrls: this.outboxRelayUrls.length ? this.outboxRelayUrls : this.defaultOutboxRelayUrls,
           enableOutboxModel: this.enableOutboxModel
         }
         this.ndk = new NDK(options)
@@ -30,8 +36,10 @@ export const useNdkStore = defineStore({
     setExplicitRelays(relays = []) {
       this.explicitRelayUrls = relays
     },
-    // @todo
     // - reset explicit relays (set to defaults)
+    resetExplicitRelays() {
+      this.explicitRelayUrls = this.defaultExplicitRelayUrls
+    },
     // @todo
     // - add outbox relay
     // @todo
@@ -46,12 +54,21 @@ export const useNdkStore = defineStore({
     // - disconnect
     // @todo
     // - reconnect (disconnect and connect)
-    // - set outboxModal with a boolean
+    // - reset outbox relays
+    resetOutboxModelRelays() {
+      this.outboxRelayUrls = this.defaultOutboxRelayUrls
+    },
+    // - set outboxModal modus with a boolean
     setOutboxModel(bool) {
       this.enableOutboxModel = bool
     }
   },
   getters: {
-
+    getDefaultExplicitRelays(state) {
+      return state.defaultExplicitRelayUrls
+    },
+    getDefaultOutboxRelays (state) {
+      return state.defaultOutboxRelayUrls
+    }
   }
 })

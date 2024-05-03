@@ -4,6 +4,7 @@ export const useUserStore = defineStore({
   id: 'user-store',
   state: () => ({
     npub: '',
+    pubkey: '',
     name: '',
     customRelays: [],
     signedIn: false,
@@ -17,7 +18,7 @@ export const useUserStore = defineStore({
       this.name = name
     },
     login(user, ndk) {
-      this.npub = user.npub
+      this.pubkey = user.pubkey
       this.fetchProfile(user, ndk)
       this.signedIn = true
       this.loggedOut = false
@@ -35,6 +36,7 @@ export const useUserStore = defineStore({
       })
       if (user.profile === undefined) {
         await user.fetchProfile()
+        this.npub = user.npub
         this.name = user.profile.name
       }
     },

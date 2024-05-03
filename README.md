@@ -26,28 +26,27 @@ Get familiar with designing for Nostr: https://nostrdesign.org
 ## Roadmap
 - [x] State management: add NDK store with [Pinia](https://nuxt.com/modules/pinia)
 - [ ] Global feed example
-- [ ] Personal feed example with content from your following
+- [ ] Personal feed example with content from the npubs you follow
 - [x] Integrate [vite-pwa-nuxt](https://nuxt.com/modules/vite-pwa-nuxt)
 - [x] Integrate [TailwindCSS](https://nuxt.com/modules/tailwindcss)
 - [x] Add layout / page [transitions](https://nuxt.com/docs/getting-started/transitions#layout-transitions) 
 - [x] Add a basic responsive design with a header, navigation, main and footer element
-- [ ] State management: add a user store with Pinia
+- [x] State management: add a user store with Pinia
 - [x] Login with extension [NIP-07](https://nostr-nips.com/nip-07)
 - [ ] Login with Wallet Connect [NIP-46](https://nostr-nips.com/nip-46)
 - [ ] Relay settings and preferences
-- [ ] A basic profile page
+- [x] A basic profile page
 - [ ] Logout / disconnect
 - [ ] Download / backup all your events
-- [ ] Kind 1 component short text note
-- [ ] Kind 30023 component for long-form content
-- [ ] Render identifiers in content fields [NIP-19](https://nostr-nips.com/nip-19) 
+- [x] Kind 1 component short text note
+- [x] Kind 30023 component for long-form content
+- [x] Render identifiers in content fields [NIP-19](https://nostr-nips.com/nip-19) 
 - [ ] Zap example
 - [ ] Implement a form of state management which can be shared through Nostr events (kind 30078)
 - [ ] Implement push notifications with the Push API
 
 ## PWA config
 * https://dev.to/karmasakshi/make-your-pwas-look-handsome-on-ios-1o08
-* 
 
 ## Deployment
 
@@ -75,7 +74,8 @@ Pubkey: `npub1qe3e5wrvnsgpggtkytxteaqfprz0rgxr8c3l34kk3a9t7e2l3acslezefe`
 Handle: `sebastian@sebastix.dev`
 
 ## License
-`GPL-2.0` GNU General Public License v2.0
+See LICENSE.txt  
+https://unlicense.org
 
 ## Donations / funding
 
