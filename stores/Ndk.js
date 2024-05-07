@@ -3,6 +3,20 @@ import NDK from "@nostr-dev-kit/ndk"
 
 export const useNdkStore = defineStore({
   id: 'ndk-store',
+  /**
+   *
+   * @returns {
+   *   {
+   *     defaultOutboxRelayUrls: string[],
+   *     ndk: NDK,
+   *     defaultExplicitRelayUrls: string[],
+   *     explicitRelayUrls: *[],
+   *     enableOutboxModel: boolean,
+   *     initialized: boolean,
+   *     outboxRelayUrls: *[]
+   *   }
+   * }
+   */
   state: () => ({
     initialized: false,
     defaultExplicitRelayUrls: [

@@ -56,27 +56,40 @@ const uploadBlob = async () => {
       uploadEvent.tags = [
         ['t', 'upload'],
         ['name', file.name],
-        ['size', file.size]
+        ['size', String(file.size)],
+        ['expiration', String(Math.floor(Date.now() / 1000) + 60 * 60)]
       ]
       console.log(uploadEvent)
-      const signed = await uploadEvent.sign()
-      console.log(signed)
+      const signedEvent = await uploadEvent.sign(NdkStore.ndk.signer)
+      console.log(signedEvent)
       // @todo work in progress uploading a blob
-      //const uploadAuthEvent = await BlossomClientRef.value.getUploadAuth(file, 'https://nstore.nostrver.se', 'Upload ' + file.name)
+      //const uploadAuthEvent = await BlossomClientRef.value.getUploadAuth(file, 'Upload ' + file.name)
       //console.log(uploadAuthEvent)
-      // encode it using base64
-      //const encodedAuthHeader = BlossomClientRef.value.encodeAuthorizationHeader(uploadAuthEvent);
-      //await BlossomClientRef.value.uploadBlob(BlossomClientRef.value.server, file, auth)
-      //await BlossomClientRef.value.uploadBlob(file)
-      const res = await fetch(new URL("/upload", 'https://nstore.nostrver.se'), {
-        method: "PUT",
-        body: file,
-        headers: { authorization: signed },
-      });
-      console.log(res)
-      if (res.ok) {
-        // @todo reload list with blobs after successful upload
-      }
+      /**
+       * Error:
+       * Uncaught (in promise) TypeError: signer is not a function
+       *     at _BlossomClient.getUploadAuth (blossom-client-sdk.js?v=e943c541:568:18)
+       *     at Proxy.getUploadAuth (blossom-client-sdk.js?v=e943c541:611:33)
+       *     at inputFile.onchange (blossom.vue:65:60)
+        */
+      const res = await BlossomClientRef.value.uploadBlob('https://nstore.nostrver.se', signedEvent)
+      // Error without uploadAuthEvent: 500 internal server error response from the server 'Something went wrong'
+      // Error with uploadAuthEvent: see above, signer is not a function
+      //console.log(res)
+
+      // encode header using base64
+      // const encodedAuthHeader = "Nostr " + btoa(signedEvent)
+      // const res = await fetch(new URL("/upload", 'https://nstore.nostrver.se'), {
+      //   method: "PUT",
+      //   body: file,
+      //   headers: { authorization: encodedAuthHeader },
+      // });
+      // // Error: 500 internal server error
+      // if (res.ok) {
+      //   // @todo reload list with blobs after successful upload
+      // } else {
+      //   console.log(res.statusText)
+      // }
     }
   } catch (e) {
     console.log(e)
