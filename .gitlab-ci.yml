@@ -7,11 +7,14 @@ build:site:
   stage: build
   script:
     - npm install
+    - npm run build
     - npm run generate
   artifacts:
     expire_in: 6 hours
     paths:
       - .output/public
+      - .output/server
+      - nitro.json
   only:
     refs:
       - master

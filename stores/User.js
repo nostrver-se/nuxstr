@@ -17,9 +17,9 @@ export const useUserStore = defineStore({
     setName(name) {
       this.name = name
     },
-    login(user, ndk) {
+    async login(user, ndk) {
       this.pubkey = user.pubkey
-      this.fetchProfile(user, ndk)
+      await this.fetchProfile(user, ndk)
       this.signedIn = true
       this.loggedOut = false
     },

@@ -1,21 +1,11 @@
 <script setup>
-  import { useNdkStore } from "../stores/Ndk.js"
   import { useUserStore } from "../stores/User.js"
-  import { NDKNip07Signer } from "@nostr-dev-kit/ndk";
 
-  const NdkStore = useNdkStore()
   const UserStore = useUserStore()
-  const nip07signer = new NDKNip07Signer()
 
   onMounted(async () => {
     try {
-      if (!UserStore.signedIn) {
-        await NdkStore.initNdk()
-        // NdkStore.ndk.signer = nip07signer
-        // await NdkStore.ndk.connect()
-        // const user = await nip07signer.user()
-        // UserStore.login(user, NdkStore.ndk)
-      }
+
     } catch (e) {
       console.log(e)
     }

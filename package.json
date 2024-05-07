@@ -9,6 +9,7 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
+    "serve" : "node ./.output/server/index.mjs",
     "postinstall": "nuxt prepare && patch-package"
   },
   "devDependencies": {

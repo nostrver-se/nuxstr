@@ -12,7 +12,6 @@
     try {
       NdkStore.resetExplicitRelays()
       await NdkStore.initNdk()
-      //NdkStore.ndk.client = nip07signer // with removing this line I can reproduce this issue: https://njump.me/nevent1qvzqqqqqqypzqpnrnguxe8qszsshvgkvhn6qjzxy7xsvx03rlrtddr62haj4lrm3qy88wumn8ghj7mn0wvhxcmmv9uq36amnwvaz7tmwdaehgu3wd46hg6tw09mkzmrvv46zucm0d5hsqg9s32gxctx2u5u4cp3yzqdnsx72lyy7j6vwcyngrfj6n2em7ns28vqpcrs8
       NdkStore.ndk.signer = nip07signer
       await NdkStore.ndk.connect()
       const user = await nip07signer.user()

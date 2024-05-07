@@ -1,7 +1,7 @@
 <script setup>
   import { useNdkStore } from '~/stores/Ndk'
   import { useUserStore } from "~/stores/User";
-  import {NDKEvent, NDKRelaySet, NDKRelay, NDKNip07Signer} from "@nostr-dev-kit/ndk";
+  import {NDKEvent, NDKRelaySet, NDKRelay, NDKNip07Signer, PublishError } from "@nostr-dev-kit/ndk";
 
   const route = useRoute()
   const NdkStore = useNdkStore()
@@ -9,28 +9,46 @@
   const place = ref()
   const nip07signer = new NDKNip07Signer()
 
-  const doCheckin = () => {
-    console.log('@todo - create and sign 13811 event here')
-    alert('@todo - create and sign 13811 event here')
-    const checkinEvent = new NDKEvent(NdkStore.ndk)
-    checkinEvent.created_at = Math.floor(Date.now() / 1000)
-    checkinEvent.pubkey = UserStore.pubkey
-    checkinEvent.content = ''
-    checkinEvent.kind = 13811
-    checkinEvent.tags = [
-        [
-            'a',
-            '37515:'+UserStore.pubkey+':Sebastix',
-            'wss://khatru.nostrver.se',
-            Math.floor(Date.now() / 1000).toString()
-        ],
-    ]
-    console.log(checkinEvent)
-    const rly = new NDKRelay('wss://khatru.nostrver.se')
-    const relaySet = new NDKRelaySet(rly, NdkStore.ndk)
-    checkinEvent.publish(relaySet)
+  /**
+   * Create and publish a location checkin event.
+   * @returns {Promise<void>}
+   */
+  const doCheckin = async () => {
+    try {
+      // @TODO - Fetch place event with info from wss://yondar.nostr1.com relay.
+
+      const checkinEvent = new NDKEvent(NdkStore.ndk)
+      checkinEvent.created_at = Math.floor(Date.now() / 1000)
+      checkinEvent.pubkey = UserStore.pubkey
+      checkinEvent.content = ''
+      checkinEvent.kind = 13811
+      // checkinEvent.tags = [
+      //    ['a', '37515:' + UserStore.pubkey + ':Sebastix', 'wss://khatru.nostrver.se', Math.floor(Date.now() / 1000).toString()]
+      // ]
+      /** @var {NostrEvent} nEvent */
+      const nEvent = await checkinEvent.toNostrEvent(UserStore.npub)
+      console.log(nEvent)
+      const relays = new NDKRelaySet(
+          new Set([
+            new NDKRelay('wss://khatru.nostrver.se')
+          ]),
+          NdkStore.ndk
+      )
+      const res = await checkinEvent.publish(relays, 15000)
+      console.log(res)
+    } catch (e) {
+      console.log(e)
+      if (e instanceof PublishError) {
+        for (const [relay, err] of e.errors) {
+          console.error(`error publishing to relay ${relay.url}`, err);
+        }
+      }
+    }
   }
 
+  /**
+   * Init function when this Vue component is mounted.
+   */
   onMounted(async () => {
     try {
       place.value = route.params.place
