@@ -6,12 +6,37 @@
   const NdkStore = useNdkStore()
   const UserStore = useUserStore()
   const nip07signer = new NDKNip07Signer()
+
   const publishEvent = async () => {
     try {
       // Create event.
       const event = new NDKEvent(NdkStore.ndk)
       event.kind = 13811
-      event.content = 'This is just a test from Nuxstr publishing a short text note (kind 13811)...'
+      event.content = 'Debugging some NDK components here... This is just a test from Nuxstr publishing a short text note (kind 1)...'
+      event.tags = [
+          ['client', 'nuxstr.nostrver.se']
+      ]
+      const result = await event.publish()
+      console.log(result)
+    } catch (e) {
+      console.log(e)
+      if (e instanceof PublishError) {
+        for (const [relay, err] of e.errors) {
+          console.error(`error publishing to relay ${relay.url}`, err);
+        }
+      }
+    }
+  }
+
+  const publishEventToRelays = async () => {
+    try {
+      // Create event.
+      const event = new NDKEvent(NdkStore.ndk)
+      event.kind = 13811
+      event.content = 'This is just a test from Nuxstr publishing a short text note (kind 13811) to specific relays...'
+      event.tags = [
+        ['client', 'nuxstr.nostrver.se']
+      ]
       // Publish event to given relaySet
       const relays = new NDKRelaySet(
         new Set([
@@ -20,7 +45,8 @@
         ]),
         NdkStore.ndk
       )
-      await event.publish(relays, 10000)
+      const result = await event.publish(relays, 10000)
+      console.log(result)
     } catch (e) {
       console.log(e)
       if (e instanceof PublishError) {
@@ -55,7 +81,10 @@
 
 <template>
   <div>
-    <button @click="publishEvent" class="p-2 bg-purple-100 text-purple-500">Publish event</button>
+    <p class="mb-2">Testing out some stuff here...</p>
+    <button @click="publishEvent" class="p-2 mb-2 bg-purple-100 text-purple-500">Publish event</button>
+    <br />
+    <button @click="publishEventToRelays" class="p-2 mb-2 bg-purple-100 text-purple-500">Publish event to some relays in a NDKRelaySet</button>
   </div>
 </template>
 
