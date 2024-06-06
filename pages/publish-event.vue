@@ -18,6 +18,7 @@
       ]
       const result = await event.publish()
       console.log(result)
+      // @todo show result here
     } catch (e) {
       console.log(e)
       if (e instanceof PublishError) {
@@ -47,6 +48,7 @@
       )
       const result = await event.publish(relays, 10000)
       console.log(result)
+      // @todo show result here
     } catch (e) {
       console.log(e)
       if (e instanceof PublishError) {
@@ -82,9 +84,14 @@
 <template>
   <div>
     <p class="mb-2">Testing out some stuff here...</p>
-    <button @click="publishEvent" class="p-2 mb-2 bg-purple-100 text-purple-500">Publish event</button>
-    <br />
-    <button @click="publishEventToRelays" class="p-2 mb-2 bg-purple-100 text-purple-500">Publish event to some relays in a NDKRelaySet</button>
+    <div v-if="UserStore.signedIn">
+      <button @click="publishEvent" class="p-2 mb-2 bg-purple-100 text-purple-500">Publish event</button>
+      <br />
+      <button @click="publishEventToRelays" class="p-2 mb-2 bg-purple-100 text-purple-500">Publish event to some relays in a NDKRelaySet</button>
+    </div>
+    <div v-else>
+      Please connect first
+    </div>
   </div>
 </template>
 

@@ -25,6 +25,7 @@ async function signer(event) {
  * @returns {Promise<void>}
  */
 const initBlossomClient = async () => {
+  console.log('hi...')
   BlossomClientRef.value = new BlossomClient('https://nstore.nostrver.se', signer)
 }
 
@@ -108,10 +109,15 @@ const uploadBlob = async () => {
  * Init function.
  */
 onMounted(async () => {
-  await NdkStore.initNdk()
-  await NdkStore.ndk.connect()
-  await initBlossomClient()
-  Blobs.value = await listBlobs()
+  try {
+    await NdkStore.initNdk()
+    await NdkStore.ndk.connect()
+    await initBlossomClient()
+    Blobs.value = await listBlobs()
+  } catch (e) {
+    console.log(e)
+  }
+
 })
 
 </script>
@@ -121,7 +127,7 @@ onMounted(async () => {
     <p class="mb-4">
       This is a quick demo how to get and list files with <NuxtLink to="/event/naddr1qqxkymr0wdek7mfdv3exjan9qgszv6q4uryjzr06xfxxew34wwc5hmjfmfpqn229d72gfegsdn2q3fgrqsqqqa28e4v8zy">Blossom</NuxtLink>.
       <br />
-      Using the node package <a href="https://github.com/hzrd149/blossom-client-sdk" target="_blank">https://github.com/hzrd149/blossom-client-sdk</a> which you can install with <code>npm install blosson-client-sdk</code>
+      Using the node package <a href="https://github.com/hzrd149/blossom-client-sdk" target="_blank">https://github.com/hzrd149/blossom-client-sdk</a> which you can install with <code>npm install blossom-client-sdk</code>
       <br />
       Documentation: <a href="https://hzrd149.github.io/blossom-client-sdk/index.html" target="_blank">https://hzrd149.github.io/blossom-client-sdk/index.html</a>
     </p>
