@@ -38,9 +38,9 @@
   }
 
   onMounted(async () => {
-    NdkStore.setExplicitRelays([
-      'wss://relay.damus.io'
-    ])
+    // NdkStore.setExplicitRelays([
+    //   'wss://relay.damus.io'
+    // ])
     await NdkStore.initNdk()
     await NdkStore.ndk.connect()
     // @todo
@@ -55,11 +55,12 @@
     <div class="eventComponent" v-if="event">
       Rendered component: <code>Kind{{ event.kind }}</code>
       <br />
-      NIP-19 bech32 id: <code class="text-sm">{{ event.encode() }}</code>
-      <br />
+      NIP-19 bech32 id
+      <code class="block text-sm overflow-x-scroll max-w-screen-lg">{{ event.encode() }}</code>
+      <br class="my-4" />
       <component :is="Kinds[`Kind`+event.kind]" :event="event_raw" />
     </div>
-    <hr />
+    <br class="my-4" />
     Show raw event value
     <pre class="bg-gray-800 text-white text-xs overflow-x-scroll">
       <code class="">

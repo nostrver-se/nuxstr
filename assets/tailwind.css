@@ -21,3 +21,8 @@ a {
         @apply text-purple-600;
     }
 }
+
+/* Format code blocks */
+pre {
+    @apply bg-gray-800 text-white text-xs overflow-x-scroll max-w-screen-lg;
+}

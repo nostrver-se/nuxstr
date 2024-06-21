@@ -33,6 +33,9 @@ const fetchPlaceById = async (id) => {
  * @returns {Promise<void>}
  */
 const fetchCheckIns = async (place) => {
+  NdkStore.setExplicitRelays([
+    'wss://khatru.nostrver.se',
+  ])
   const filter = {
     kinds: [13811]
   }
@@ -44,8 +47,8 @@ const fetchCheckIns = async (place) => {
 onMounted(async () => {
   NdkStore.setExplicitRelays([
     'wss://khatru.nostrver.se',
-    'wss://yondar.nostr1.com',
-    'wss://nos.lol'
+    //'wss://yondar.nostr1.com',
+    //'wss://nos.lol'
   ])
   NdkStore.setOutboxModel(false)
   await NdkStore.initNdk()
@@ -63,9 +66,9 @@ onMounted(async () => {
       <br />
       <a :href="`https://go.yondar.me/place/${ place.encode() }`" target="_blank">View place with Yondar</a>
       <br />
-      <NuxtLink to="/places/sebastix/checkin" v-if="place">Go to check-in page</NuxtLink>
+      <NuxtLink to="/places/sebastix/checkin" class="inline-block my-4 p-2 bg-purple-100 text-purple-500" v-if="place">Go to check-in page</NuxtLink>
       <br />
-      Recent checkins on this place:
+      <strong>Latest checkins on this place fetched from <code>wss://khatru.nostrver.se</code></strong>
       <br />
       <div v-if="checkins">
         <div v-for="(checkin) in checkins">
