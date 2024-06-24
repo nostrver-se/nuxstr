@@ -14,7 +14,7 @@
   onMounted(async () => {
     NdkStore.setExplicitRelays([
       'wss://khatru.nostrver.se',
-      'wss://yondar.nostr1.com'
+      'wss://cyberspace.nostr1.com'
     ])
     NdkStore.setOutboxModel(false)
     await NdkStore.initNdk()
@@ -26,7 +26,7 @@
 
 <template>
   <div>
-    Display a list with places requested (event kind <code>37515</code> from yondar.nostr1.com and khatru.nostrver.se)
+    Display a list with places requested (event kind <code>37515</code> from wss://cyberspace.nostr1.com and khatru.nostrver.se)
     <br />
     <code>{{ NdkStore.explicitRelayUrls }}</code>
     <ul v-if="places">

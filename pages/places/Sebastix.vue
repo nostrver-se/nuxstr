@@ -47,7 +47,7 @@ const fetchCheckIns = async (place) => {
 onMounted(async () => {
   NdkStore.setExplicitRelays([
     'wss://khatru.nostrver.se',
-    //'wss://yondar.nostr1.com',
+    //'wss://cyberspace.nostr1.com',
     //'wss://nos.lol'
   ])
   NdkStore.setOutboxModel(false)
