@@ -1,7 +1,7 @@
 <script setup>
   import { useNdkStore } from '~/stores/Ndk'
   import { useUserStore } from "~/stores/User";
-  import { NDKEvent, NDKRelaySet, NDKRelay, NDKNip07Signer, PublishError } from "@nostr-dev-kit/ndk";
+  import { NDKEvent, NDKRelaySet, NDKRelay, NDKNip07Signer } from "@nostr-dev-kit/ndk";
 
   const route = useRoute()
   const NdkStore = useNdkStore()
@@ -63,11 +63,6 @@
       console.log(res)
     } catch (e) {
       console.log(e)
-      if (e instanceof PublishError) {
-        for (const [relay, err] of e.errors) {
-          console.error(`error publishing to relay ${relay.url}`, err);
-        }
-      }
     }
   }
 

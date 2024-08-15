@@ -1,5 +1,6 @@
 export default defineNuxtConfig({
   ssr: false,
+
   app: {
     pageTransition: {
       name: 'layout',
@@ -10,12 +11,15 @@ export default defineNuxtConfig({
       viewport: 'initial-scale=1, viewport-fit=cover, width=device-width'
     }
   },
+
   css: ['~/assets/tailwind.css'],
+
   modules: [
     '@pinia/nuxt',
     '@vite-pwa/nuxt',
     '@nuxtjs/tailwindcss'
   ],
+
   pwa: {
     /* PWA options */
     registerType: 'autoUpdate',
@@ -27,5 +31,7 @@ export default defineNuxtConfig({
     client: {
       installPrompt: true
     }
-  }
+  },
+
+  compatibilityDate: '2024-08-15'
 })
