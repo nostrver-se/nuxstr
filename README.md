@@ -38,12 +38,14 @@ Get familiar with designing for Nostr: https://nostrdesign.org
 - [x] A basic profile page
 - [ ] Logout / disconnect
 - [ ] Download / backup all your events
-- [x] Kind 1 component short text note
-- [x] Kind 30023 component for long-form content
+- [x] Kind `1` component short text note
+- [x] Kind `30023` component for long-form content
 - [x] Render identifiers in content fields [NIP-19](https://nostr-nips.com/nip-19) 
 - [ ] Zap example
 - [ ] Implement a form of state management which can be shared through Nostr events (kind 30078)
-- [ ] Implement push notifications with the Push API
+- [ ] Implement push notifications with the Web Push API
+- [ ] Implement NIP-52
+- [ ] Compose a note with the [Nostr WYSIWYG editor](https://github.com/cesardeazevedo/nostr-editor) made by Cesar
 
 ## PWA config
 * https://dev.to/karmasakshi/make-your-pwas-look-handsome-on-ios-1o08
