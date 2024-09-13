@@ -36,12 +36,12 @@
       // Publish event to given relaySet
       const relays = new NDKRelaySet(
         new Set([
-          new NDKRelay('wss://khatru.nostrver.se'), // this relay is only accepting event kinds 13811 and 37515
-          new NDKRelay('wss://nostr.sebastix.dev')
+          new NDKRelay('wss://khatru.nostrver.se', '', NdkStore.ndk), // this relay is only accepting event kinds 13811 and 37515
+          new NDKRelay('wss://nostr.sebastix.dev', '', NdkStore.ndk)
         ]),
         NdkStore.ndk
       )
-      const result = await event.publish(relays, 10000)
+      const result = await event.publish(relays, 10000, 1)
       console.log(result)
       // @todo show result here
     } catch (e) {

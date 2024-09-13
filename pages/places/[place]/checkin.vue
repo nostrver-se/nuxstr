@@ -10,6 +10,7 @@
   const nip07signer = new NDKNip07Signer()
 
   /**
+   * Fetch a place by name using the d-tag.
    *
    * @param name
    * @returns {Promise<NDKEvent>}
@@ -19,10 +20,8 @@
       kind: [37515],
       limit: 1,
       authors: [UserStore.pubkey],
-      // NDK does not support to add tags to a filter
-      // tags: [
-      //     ['d', name]
-      // ]
+      // Filter on tags.
+      ['#d']: [name],
     }
     console.log(filter)
     // TODO / bug: does not resolve or return a result
@@ -46,21 +45,34 @@
       checkinEvent.kind = 13811
       checkinEvent.tags = [
         ['a', '37515:' + UserStore.pubkey + ':' + place + '', 'wss://khatru.nostrver.se', Math.floor(Date.now() / 1000).toString()],
+        ['d', place],
+        ['place', place],
         ['client', 'nuxstr', 'wss://khatru.nostrver.se']
       ]
+      NdkStore.setExplicitRelays([
+        'wss://khatru.nostrver.se'
+      ])
+      NdkStore.enableOutboxModel = true;
+      await checkinEvent.sign(NdkStore.ndk.signer)
       /** @var {NostrEvent} nEvent */
       const nEvent = await checkinEvent.toNostrEvent(UserStore.npub)
-      const relays = new NDKRelaySet(
+      const relaySet = new NDKRelaySet(
           new Set([
-            new NDKRelay('wss://khatru.nostrver.se')
+            new NDKRelay('wss://khatru.nostrver.se', false, NdkStore.ndk)
           ]),
           NdkStore.ndk
       )
+      //** @var {Set} res */
       const res = await checkinEvent.publish()
       // TODO / bug: publish to a specific set of relays does not work with NDK...
-      // Error: Timeout
-      //const res = await checkinEvent.publish(relays, 15000)
+      // Error: ...
+      //const res = await relaySet.publish(checkinEvent, 15000, 1);
+      //const res = await checkinEvent.publish(relays, 15000, 1)
+      res.forEach((relay) => {
+         console.log('Attempt to publish it to: ' + relay.url + ', result: ...')
+      })
       console.log(res)
+      // TODO show success message to the user now.
     } catch (e) {
       console.log(e)
     }
@@ -86,12 +98,12 @@
       } else {
         await NdkStore.ndk.connect()
       }
-      // NdkStore.ndk.pool?.on("relay:connecting", (relay) => {
-      //   console.log("🪄 MAIN POOL Connecting to relay", relay.url);
-      // });
-      // NdkStore.ndk.pool?.on("relay:connect", (relay) => {
-      //   console.log("✅ MAIN POOL Connected to relay", relay.url);
-      // });
+      NdkStore.ndk.pool?.on("relay:connecting", (relay) => {
+        console.log("🪄 MAIN POOL Connecting to relay", relay.url);
+      });
+      NdkStore.ndk.pool?.on("relay:connect", (relay) => {
+        console.log("✅ MAIN POOL Connected to relay", relay.url);
+      });
     } catch (e) {
       console.log(e)
     }
@@ -117,6 +129,7 @@
         created_at: {{ Math.floor(Date.now() / 1000).toString() }},
         tags: [
           ["a", "37515:{{ UserStore.pubkey }}:{{ place }}", "wss://khatru.nostrver.se", "{{ Math.floor(Date.now() / 1000).toString() }}"],
+          ["d" , "{{ place }}"]
           ["client", "nuxstr", "wss://khatru.nostrver.se"]
         ]
       }
@@ -144,6 +157,7 @@
           created_at: 1706720386,
           tags: [
             ["a", "37515:&lt;pubkey&gt;:&lt;d tag of place&gt;", "wss://relayable.org", "1703721153"] // referencing a place; 4th arg is the time visited
+            ["d" , "&lt;d tag of place&gt;"]
           ]
         }
       </code>
@@ -159,8 +173,8 @@
           kind: 33811,
           created_at: 1706720386,
           tags: [
-            ["d", "&lt;d tag of place&gt;"]
             ["a", "37515:&lt;pubkey&gt;:&lt;d tag of place&gt;", "wss://relayable.org", "1703721153"] // referencing a place; 4th arg is the time visited
+            ["d", "&lt;d tag of place&gt;"]
           ]
         }
       </code>

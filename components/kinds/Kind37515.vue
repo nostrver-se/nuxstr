@@ -117,17 +117,28 @@
    */
   const fetchCheckIns = async (place) => {
     NdkStore.setExplicitRelays([
-      'wss://khatru.nostrver.se'
+      'wss://khatru.nostrver.se',
+      'wss://nostr.sebastix.dev'
     ])
-    const filter = {
-      kinds: [13811],
+    // Get d-tag from place.
+    let dTag = '';
+    place.tags.forEach((tag) => {
+      if (tag[0] === 'd') {
+        dTag = tag[1];
+      }
+    })
+    if (dTag !== '') {
+      const filter = {
+        kinds: [13811],
+        // filter on d tag (unique identifier for this specific place) which can be extracted from the a tag
+        // or with the provided d tag
+        ['#d']: [dTag],
+        //['#a']: ['37515:29216785f7b241a6ebbb0f58f3ef882b544dafa3f60cca666aa845c12a636a70:Sebastix']
+      }
+      /** @var {Set} res */
+      const res  = await NdkStore.ndk.fetchEvents(filter)
+      checkins.value = res
     }
-    // TODO filter on d tag (unique identifier for this specific place) which can be extracted from the a tag
-    // or with the provided d tag
-    /** @var {Set} res */
-    const res  = await NdkStore.ndk.fetchEvents(filter)
-    console.log(res)
-    checkins.value = res
   }
 
   onMounted(async () => {

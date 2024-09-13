@@ -7,7 +7,10 @@
   const places = ref()
 
   const fetchPlaces = async () => {
-    const filter = {kinds: [37515], limit: 25}
+    const filter = {
+      kinds: [37515],
+      limit: 25
+    }
     places.value = await NdkStore.ndk.fetchEvents(filter)
   }
 
