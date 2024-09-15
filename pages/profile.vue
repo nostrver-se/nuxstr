@@ -85,6 +85,19 @@
             <span class="block" v-for="(relay) in NdkStore.getDefaultOutboxRelays">{{ relay }}</span>
           </dd>
         </div>
+        <div class="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-medium leading-6 text-gray-900">TODO: other relays</dt>
+          <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+            <ul>
+              <li>Search relays</li>
+              <li>Blossom relays</li>
+              <li>DM / inbox relays</li>
+              <li>Tor relays</li>
+              <li>Cache relays</li>
+              <li>Storage relays</li>
+            </ul>
+          </dd>
+        </div>
       </dl>
       <div class="mt-4">
         <button @click="UserStore.logout(NdkStore.ndk)" class="block text-purple-500 mt-6 p-2 mx-auto bg-purple-100 hover:bg-purple-200">
