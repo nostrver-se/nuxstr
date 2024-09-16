@@ -3,13 +3,17 @@ export default defineNuxtConfig({
     vue: {
       template: {
         compilerOptions: {
-          // Tell Vite that all components starting with "nostr-" are web components
+          // Tell Vite that all components starting with "nostr-" are web components.
           isCustomElement: (tag) => tag.startsWith('nostr-')
         }
       }
     }
   },
   ssr: false,
+
+  nitro: {
+
+  },
 
   app: {
     pageTransition: {
@@ -32,7 +36,22 @@ export default defineNuxtConfig({
 
   pwa: {
     /* PWA options */
+    registerWebManifestInRouteRules: true,
+    scope: '/',
+    base: '/',
+    injectRegister: 'auto',
     registerType: 'autoUpdate',
+    workbox: {
+      globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
+      globIgnores: [],
+      runtimeCaching: [
+        {
+          urlPattern: '/',
+          handler: 'NetworkFirst'
+        }
+      ],
+      navigateFallback: undefined
+    },
     manifest: {
       name: 'Nuxstr',
       short_name: 'Nuxstr',

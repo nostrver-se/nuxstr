@@ -1,11 +1,11 @@
-<script setup>
+<script type="module">
   // import all
-  //import './node_modules/nostr-web-components/dist/index.js'
+  import './node_modules/nostr-web-components/dist/index.js'
   // or separate
-  import './node_modules/nostr-web-components/dist/nostr-name.js'
-  import './node_modules/nostr-web-components/dist/nostr-picture.js'
-  import './node_modules/nostr-web-components/dist/nostr-user-search.js'
-  import './node_modules/nostr-web-components/dist/nostr-event-json.js'
+  // import './node_modules/nostr-web-components/dist/nostr-name.js'
+  // import './node_modules/nostr-web-components/dist/nostr-picture.js'
+  // import './node_modules/nostr-web-components/dist/nostr-user-search.js'
+  // import './node_modules/nostr-web-components/dist/nostr-event-json.js'
 </script>
 
 <template>

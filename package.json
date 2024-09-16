@@ -15,7 +15,7 @@
   "postinstall": "npx patch-package",
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.9.4",
-    "@vite-pwa/nuxt": "^0.10.0",
+    "@vite-pwa/nuxt": "^0.10.5",
     "nuxt": "^3.8.1",
     "patch-package": "^8.0.0",
     "vue": "^3.3.8",
