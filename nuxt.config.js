@@ -61,6 +61,5 @@ export default defineNuxtConfig({
       installPrompt: true
     }
   },
-
-  compatibilityDate: '2024-08-15'
+  compatibilityDate: '2025-01-14'
 })

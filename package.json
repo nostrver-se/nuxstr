@@ -9,7 +9,7 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "serve": "node ./.output/server/index.mjs",
+    "serve": "npx serve ./.output/public",
     "postinstall": "nuxt prepare && patch-package"
   },
   "postinstall": "npx patch-package",
@@ -23,9 +23,9 @@
   },
   "dependencies": {
     "@nostr-dev-kit/ndk": "^2.8.0",
-    "@pinia/nuxt": "^0.5.1",
+    "@pinia/nuxt": "^0.9.0",
     "blossom-client-sdk": "^0.5.1",
-    "marked": "^14.0.0",
+    "marked": "^15.0.0",
     "nostr-web-components": "^0.0.6",
     "pinia": "^2.1.7"
   }
