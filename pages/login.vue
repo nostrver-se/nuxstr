@@ -2,6 +2,7 @@
   import { useNdkStore } from '~/stores/Ndk'
   import { NDKNip07Signer, NDKNip46Signer } from "@nostr-dev-kit/ndk"
   import { useUserStore } from "../stores/User.js"
+  import { NstartModal } from 'nstart-modal';
 
   const NdkStore = useNdkStore()
   const nip07signer = new NDKNip07Signer()
@@ -33,6 +34,37 @@
       alert(e)
     }
   }
+  
+  const createProfile = () => {
+    try {
+      // Let's open the nstart modal
+      const modal = new NstartModal({
+        baseUrl: 'https://start.njump.me',
+        // Required parameters
+        an: 'Nuxstr', // appName
+        at: 'web',
+        ac: 'nuxstr.nostrver.se',
+        // Optional parameters
+        afb: true, // skipBunker
+        asb: false, // skipBunker
+        aan: true, // avoidNsec
+        aac: false, // avoidNcryptsec
+        arr: ['wss://relay.damus.io'], //readRelays
+        awr: ['wss://relay.damus.io'], //writeRelays
+        // Callbacks
+        onComplete: (result) => {
+          console.log('Login token:', result.nostrLogin);
+        },
+        onCancel: () => {
+          console.log('Wizard cancelled');
+        }
+      });
+      modal.open();
+    } catch (e) {
+      console.log(e);
+      alert(e);
+    }
+  }
 </script>
 <template>
   <div>
@@ -55,6 +87,9 @@
       </button>
       <button @click="loginNostrConnect">
         Connect with Nostr Connect (NIP-46)
+      </button>
+      <button @click="createProfile">
+        Create profile
       </button>
     </div>
     <Modal :open="false" ref="modalRef">
