@@ -3,7 +3,7 @@ stages:
   - deploy
 
 build:site:
-  image: node:20
+  image: node:22
   stage: build
   script:
     - npm install
