@@ -28,10 +28,7 @@
     NdkStore.setExplicitRelays([
         'wss://relay.damus.io',
         'wss://nos.lol',
-        'wss://relay.plebstr.com',
-        'wss://relay.nostr.band',
         'wss://nostr-01.yakihonne.com',
-        'wss://nostr-02.dorafactory.org'
     ])
     NdkStore.setOutboxModel(false)
     await NdkStore.initNdk()
@@ -59,10 +56,7 @@
     <u>
       <li>wss://relay.damus.io</li>
       <li>wss://nos.lol</li>
-      <li>wss://relay.plebstr.com</li>
-      <li>wss://relay.nostr.band</li>
       <li>wss://nostr-01.yakihonne.com</li>
-      <li>wss://nostr-02.dorafactory.org</li>
     </u>
   </div>
 </template>

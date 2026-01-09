@@ -1,7 +1,7 @@
 {
   "name": "nuxstr",
   "private": true,
-  "license": "GPL-2.0-only",
+  "license": "UNLICENSED",
   "homepage": "https://nuxstr.nostrver.se",
   "type": "module",
   "scripts": {
@@ -22,7 +22,7 @@
     "vue-router": "^4.2.5"
   },
   "dependencies": {
-    "@nostr-dev-kit/ndk": "^2.8.0",
+    "@nostr-dev-kit/ndk": "2.8.*",
     "@pinia/nuxt": "^0.11.3",
     "blossom-client-sdk": "^0.5.1",
     "marked": "^17.0.1",

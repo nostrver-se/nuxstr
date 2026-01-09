@@ -22,17 +22,36 @@
    * Let's async load the feed component with:
    * https://nuxt.com/docs/api/composables/use-async-data
    */
-  const { data, pending, error, refresh } = await useAsyncData(
-      'feed',
-      () => {
-        // Return a promise object here.
-      }
-  )
+  // const { data, pending, error, refresh } = await useAsyncData(
+  //     'feed',
+  //     () => {
+  //       // Return a promise object here.
+  //     }
+  // )
 
   const fetchFeed = async() => {
     // Fetch all events with different kind.
-    const filter = {kinds: fetchKinds, limit: 50}
-    events.value = await NdkStore.ndk.fetchEvents(filter)
+    const filters = {kinds: fetchKinds, limit: 50}
+    events.value = await NdkStore.ndk.fetchEvents(filters)
+    // For NDK >version 2.8
+    //   const revents = await NdkStore.ndk.subscribe(
+    //     filters,
+    //     {
+    //       closeOnEose: true,
+    //       relayUrls: ['wss://nos.lol'],
+    //     },
+    //     {
+    //       onEvent: (event) => {
+    //         console.log(event);
+    //         console.log('New note:', event.content);
+    //       },
+    //       onEvents: (events) => { // Parameter renamed to 'events'
+    //         console.log(`Received ${events.length} events from cache initially.`);
+    //         events.value = events
+    //       },
+    //     }
+    //   )
+    //   console.log(revents)
   }
 
   onMounted(async() => {

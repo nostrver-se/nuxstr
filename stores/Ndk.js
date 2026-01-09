@@ -1,8 +1,7 @@
 import { defineStore } from "pinia"
 import NDK from "@nostr-dev-kit/ndk"
 
-export const useNdkStore = defineStore({
-  id: 'ndk-store',
+export const useNdkStore = defineStore('ndk-store', {
   /**
    *
    * @returns {
@@ -20,11 +19,12 @@ export const useNdkStore = defineStore({
   state: () => ({
     initialized: false,
     defaultExplicitRelayUrls: [
-      "wss://nostr.sebastix.dev"
+      "wss://relay.damus.io"
     ],
     explicitRelayUrls: [],
     defaultOutboxRelayUrls: [
-      "wss://purplepag.es"
+      "wss://purplepag.es",
+      "wss://profiles.nostrver.se"
     ],
     outboxRelayUrls: [],
     enableOutboxModel: false,
@@ -70,7 +70,7 @@ export const useNdkStore = defineStore({
     // - reconnect (disconnect and connect)
     // - reset outbox relays
     resetOutboxModelRelays() {
-      this.outboxRelayUrls = this.defaultOutboxRelayUrls
+      this.outboxRelayUrls = this.getDefaultOutboxRelays
     },
     // - set outboxModal modus with a boolean
     setOutboxModel(bool) {
