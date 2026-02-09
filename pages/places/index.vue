@@ -4,14 +4,25 @@
 
   const NdkStore = useNdkStore()
 
-  const places = ref()
+  const places = ref([])
 
   const fetchPlaces = async () => {
-    const filter = {
+    const filters = {
       kinds: [37515],
       limit: 25
     }
-    places.value = await NdkStore.ndk.fetchEvents(filter)
+    //places.value = await NdkStore.ndk.fetchEvents(filters)
+    await NdkStore.ndk.subscribe(
+      filters,
+      {
+        closeOnEose: true,
+      },
+      {
+        onEvent: (event) => {
+          places.value.push(event)
+        },
+      }
+    )
   }
 
   onMounted(async () => {

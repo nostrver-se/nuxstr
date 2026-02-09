@@ -13,14 +13,19 @@
    * @returns {Promise<void>}
    */
   const fetchArticles = async () => {
-    const filter = {kinds: [30023], limit: 50}
-    // Fetch events.
-    const resultEvents  = await NdkStore.ndk.fetchEvents(filter)
-    // Let's iterate over the events now.
-    resultEvents.forEach((event) => {
-      const article = new NDKArticle(NdkStore.ndk, event)
-      NDKArticles.value.push(article)
-    })
+    const filters = {kinds: [30023], limit: 50}
+    await NdkStore.ndk.subscribe(
+      filters,
+      {
+        closeOnEose: true,
+      },
+      {
+        onEvent: (event) => {
+          const article = new NDKArticle(NdkStore.ndk, event)
+          NDKArticles.value.push(article)
+        },
+      }
+    )
   }
 
   onMounted(async() => {
@@ -28,6 +33,7 @@
     NdkStore.setExplicitRelays([
         'wss://relay.damus.io',
         'wss://nos.lol',
+        'wss://relay.primal.net',
         'wss://nostr-01.yakihonne.com',
     ])
     NdkStore.setOutboxModel(false)

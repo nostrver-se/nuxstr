@@ -32,7 +32,7 @@
    */
   async function fetchEvent(event_id){
     NdkStore.ndk.fetchEvent(event_id).then(result => {
-      event = result
+      event.value = result
       event_raw.value = result.rawEvent()
     })
   }
@@ -59,14 +59,17 @@
       <code class="block text-sm overflow-x-scroll max-w-screen-lg">{{ event.encode() }}</code>
       <br class="my-4" />
       <component :is="Kinds[`Kind`+event.kind]" :event="event_raw" />
+      <br class="my-4" />
+      Show raw event value
+      <pre class="bg-gray-800 text-white text-xs overflow-x-scroll">
+        <code class="">
+          {{ event_raw }}
+        </code>
+      </pre>
     </div>
-    <br class="my-4" />
-    Show raw event value
-    <pre class="bg-gray-800 text-white text-xs overflow-x-scroll">
-      <code class="">
-        {{ event_raw }}
-      </code>
-    </pre>
+    <div class="text-center font-italic" v-else>
+      Loading event {{ route.params.id }}
+    </div>
   </div>
 </template>
 

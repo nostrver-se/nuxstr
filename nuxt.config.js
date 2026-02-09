@@ -3,7 +3,7 @@ export default defineNuxtConfig({
     vue: {
       template: {
         compilerOptions: {
-          // Tell Vite that all components starting with "nostr-" are web components.
+          // Tell Vite that all components starting with "nostr-" are web components and not vue components.
           isCustomElement: (tag) => tag.startsWith('nostr-')
         }
       }

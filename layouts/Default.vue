@@ -11,8 +11,8 @@ const { $pwa } = useNuxtApp()
       <button @click="$pwa.updateServiceWorker()">Reload</button>
     </div>
     <Header />
-    <main class="flex flex-row">
-      <section class="flex-1 mt-[68px] sm:mt-0 pr-10 sm:pr-0">
+    <main class="flex flex-row sm:gap-x-2">
+      <section class="flex-1 mt-[68px] sm:mt-0 pr-[44px] sm:pr-0">
         <SubNavigation />
         <slot />
       </section>

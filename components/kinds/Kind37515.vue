@@ -164,11 +164,11 @@
       <br />
       <strong>Latest checkins on this place fetched from <code>wss://khatru.nostrver.se</code></strong>
       <br />
-      <div v-if="checkins">
-        <div v-for="(checkin) in checkins">
+      <div v-if="checkins" class="checkins">
+        <p v-for="(checkin) in checkins" class="checkin">
           {{ checkin.created_at }} -
           {{ checkin.content }} by {{ checkin.pubkey }}
-        </div>
+        </p>
       </div>
       <div v-else>
         No check-ins found.

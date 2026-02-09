@@ -17,15 +17,15 @@ Visit https://nuxstr.nostrver.se
 
 Learn more about Nuxt: https://nuxt.com  
 Explore Nuxt modules: https://nuxt.com/modules  
-Learn more about Nostr: https://nostr.how  
-NDK documentation: https://ndk.fyi/docs/ 
-Nostr NIPs, kinds and tags: https://nostr-nips.com/  
-Explore Nostr clients: https://nostrapp.link/apps/category/all  
+Learn more about Nostr: https://nostr.org  
+NDK documentation: https://nostr-dev-kit.github.io/ndk/
+Nostr NIPs, kinds and tags: https://nips.nostr.com
+Explore Nostr clients: https://nostr.net/  
 Get familiar with designing for Nostr: https://nostrdesign.org
 
 ## Roadmap
 - [x] State management: add NDK store with [Pinia](https://nuxt.com/modules/pinia)
-- [ ] Global feed example
+- [x] Global feed example
 - [ ] Personal feed example with content from the npubs you follow
 - [x] Integrate [vite-pwa-nuxt](https://nuxt.com/modules/vite-pwa-nuxt)
 - [x] Integrate [TailwindCSS](https://nuxt.com/modules/tailwindcss)

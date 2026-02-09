@@ -3,7 +3,7 @@
   import { useNdkStore } from '~/stores/Ndk'
 
   const NdkStore = useNdkStore()
-  const events = ref()
+  const events = ref([])
 
   const fetchKinds = [
     0, // Profile metadata
@@ -19,7 +19,7 @@
 
   /**
    * @todo
-   * Let's async load the feed component with:
+   * Lets async load the feed component with:
    * https://nuxt.com/docs/api/composables/use-async-data
    */
   // const { data, pending, error, refresh } = await useAsyncData(
@@ -30,32 +30,24 @@
   // )
 
   const fetchFeed = async() => {
-    // Fetch all events with different kind.
+    // Fetch all events with different kinds.
     const filters = {kinds: fetchKinds, limit: 50}
-    events.value = await NdkStore.ndk.fetchEvents(filters)
-    // For NDK >version 2.8
-    //   const revents = await NdkStore.ndk.subscribe(
-    //     filters,
-    //     {
-    //       closeOnEose: true,
-    //       relayUrls: ['wss://nos.lol'],
-    //     },
-    //     {
-    //       onEvent: (event) => {
-    //         console.log(event);
-    //         console.log('New note:', event.content);
-    //       },
-    //       onEvents: (events) => { // Parameter renamed to 'events'
-    //         console.log(`Received ${events.length} events from cache initially.`);
-    //         events.value = events
-    //       },
-    //     }
-    //   )
-    //   console.log(revents)
+    await NdkStore.ndk.subscribe(
+      filters,
+      {
+        closeOnEose: false,
+      },
+      {
+        onEvent: (event) => {
+          events.value.push(event)
+        },
+      }
+   )
   }
 
   onMounted(async() => {
-    NdkStore.setOutboxModel(true)
+    NdkStore.setOutboxModel(false)
+    NdkStore.resetExplicitRelays()
     await NdkStore.initNdk()
     await NdkStore.ndk.connect()
     await fetchFeed()
